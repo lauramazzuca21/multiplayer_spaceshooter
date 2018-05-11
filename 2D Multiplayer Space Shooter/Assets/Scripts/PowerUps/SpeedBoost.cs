@@ -24,11 +24,10 @@ public class SpeedBoost : PowerUp
 	override protected void OnTriggerEnter2D(Collider2D collision)
 	{
 		Ship shipCollided = collision.GetComponent<Ship>();
-        
 
 		if (shipCollided != null) 
 		{
-			shipCollided.SpeedBoostOn();
+			shipCollided.SpeedBoostOn(2f);
 			this.DestroyPowerUp();
 		}
     

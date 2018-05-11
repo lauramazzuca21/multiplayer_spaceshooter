@@ -7,7 +7,6 @@ public class PowerUpController : MonoBehaviour
 	private float xBoundaries;
 	private float TIMER_VALUE = 20f;
 	private float timer;
-	private PowerUp[] powerUps;
 	private Vector3 randomSpawn;
 	[SerializeField]
 	private GameObject speedBoostPrefab;
@@ -16,8 +15,8 @@ public class PowerUpController : MonoBehaviour
     {
 		timer = TIMER_VALUE;
 		randomSpawn = new Vector3();
-		yBoundaries = Camera.main.orthographicSize;
-		xBoundaries = Camera.main.orthographicSize * ((float)Screen.width / (float)Screen.height);
+		yBoundaries = Camera.main.orthographicSize - 1f;
+		xBoundaries = (Camera.main.orthographicSize - 1f) * ((float)Screen.width / (float)Screen.height);
     } 
 
     // Update is called once per frame

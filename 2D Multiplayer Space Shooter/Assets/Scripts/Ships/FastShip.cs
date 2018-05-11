@@ -5,25 +5,28 @@ public class FastShip : Ship
 {
     // Use this for initialization   
 
-	private const float MAX_SPEED = 5f;
-	private const float ROT_SPEED = 180f;
-	private const float BOUNDARY_RADIUS = 0.5f;
+	private static readonly float MAX_SPEED = 7f;
+	private static readonly float ROT_SPEED = 180f;
+	private static readonly float BOUNDARY_RADIUS = 0.5f;
+	private static readonly int HEALTH = 15;
+	private static readonly float DAMAGE_DEALT = 0.5f;
 
 	private bool _speedBoost = false;
 	private bool _shields = false;
 	private bool _enhancedShot = false;
 
-	new void Start()
+	override protected void Start()
     {
-		this._maxSpeed = MAX_SPEED;
+		MaxSpeed = MAX_SPEED;
+		RotSpeed = ROT_SPEED; //speed we can turn in 1 sec
+		ShipBoundaryRadius = BOUNDARY_RADIUS;
 
-		this._rotSpeed = ROT_SPEED; //speed we can turn in 1 sec
-
-		this._shipBoundaryRadius = BOUNDARY_RADIUS;
+		Health = HEALTH;
+		DamageDealt = DAMAGE_DEALT;
     }
 
 		// Update is called once per frame
-	new void Update()
+	override protected void Update()
     {
 		Movement();
     }
@@ -35,7 +38,7 @@ public class FastShip : Ship
         float z = rot.eulerAngles.z;
 
         //minus to get the std rotaton (dxdx, sxsx)
-        z -= Input.GetAxis("Horizontal") * _rotSpeed * Time.deltaTime;
+        z -= Input.GetAxis("Horizontal") * RotSpeed * Time.deltaTime;
         rot = Quaternion.Euler(0, 0, z);
         transform.rotation = rot;
 
@@ -45,7 +48,7 @@ public class FastShip : Ship
         //the sensitivity under InputManager gives the sensation of slow start and build up of velocity
         //this is what we want to have so it's independant from both keyboard and joystick
         // Input.GetAxis returns a FLOAT between -1.0 and 1.0 0 if not pressed
-        Vector3 newPos = new Vector3(0, Input.GetAxis("Vertical") * _maxSpeed * Time.deltaTime, 0);
+        Vector3 newPos = new Vector3(0, Input.GetAxis("Vertical") * MaxSpeed * Time.deltaTime, 0);
 
         pos += rot * newPos;
 
@@ -57,12 +60,34 @@ public class FastShip : Ship
         //also valid, unless u wanna do stuff in betweed : transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
 
-	override public void SpeedBoostOn() { _speedBoost = true; } 
+	override public void SpeedBoostOn(float speedMultiplyer) 
+	{ 
+		_speedBoost = true;
+		MaxSpeed = MaxSpeed * speedMultiplyer;
+
+		StartCoroutine(this.SpeedBoostPowerDown());
+	} 
+
+	protected IEnumerator SpeedBoostPowerDown() 
+	{
+		yield return new WaitForSeconds(5.0f);
+		_speedBoost = true;
+	}
 
 	override public void ShieldsOn() { _shields = true; } 
 
+	protected IEnumerator ShieldsPowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+		_shields = true;
+    }
+
 	override public void EnhancedShotOn() { _enhancedShot = true; } 
 
-
+	protected IEnumerator EnhancedShotPowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+		_enhancedShot = true;
+    }
 
 }
