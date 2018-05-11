@@ -10,7 +10,7 @@ public class StrongShip : Ship
 	private static readonly float MAX_SPEED = 5f;
 	private static readonly float ROT_SPEED = 150f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly int HEALTH = 0;
+	private static readonly int HEALTH = 20;
 	private static readonly float DAMAGE_DEALT = 1f;
 
 	// Use this for initialization
