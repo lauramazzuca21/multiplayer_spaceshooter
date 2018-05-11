@@ -10,13 +10,8 @@ public class StrongShip : Ship
 	private static readonly float MAX_SPEED = 5f;
 	private static readonly float ROT_SPEED = 150f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly int HEALTH = 20;
+	private static readonly int HEALTH = 0;
 	private static readonly float DAMAGE_DEALT = 1f;
-
-	private bool _speedBoost = false;
-    private bool _shields = false;
-    private bool _enhancedShot = false;
-
 
 	// Use this for initialization
 	override protected void Start()
@@ -27,6 +22,8 @@ public class StrongShip : Ship
         
         Health = HEALTH;
         DamageDealt = DAMAGE_DEALT;
+
+       
     }
 
     // Update is called once per frame
@@ -57,21 +54,35 @@ public class StrongShip : Ship
 
 	public override void EnhancedShotOn()
     {
-		_enhancedShot = true;
+		EnhancedShotStatus = true;
         
-        StartCoroutine(this.SpeedBoostPowerDown());
+		StartCoroutine(this.EnhancedShotPowerDown());
 	}
+
+	protected IEnumerator EnhancedShotPowerDown()
+    {
+        yield return new WaitForSeconds(3.0f);
+		EnhancedShotStatus = false;
+
+    }
 
     public override void ShieldsOn()
     {
-		_shields = true;
+		ShieldsStatus = true;
         
-        StartCoroutine(this.SpeedBoostPowerDown());    
+        StartCoroutine(this.ShieldsPowerDown());    
 	}
 
+	protected IEnumerator ShieldsPowerDown()
+    {
+        yield return new WaitForSeconds(3.0f);
+		ShieldsStatus = false;
+
+    }
+    
 	public override void SpeedBoostOn(float speedMultiplyer)
     {
-		_speedBoost = true;
+		SpeedBoostStatus = true;
 		MaxSpeed = MaxSpeed * speedMultiplyer;
 		StartCoroutine(this.SpeedBoostPowerDown());
 
@@ -80,7 +91,7 @@ public class StrongShip : Ship
 	protected IEnumerator SpeedBoostPowerDown()
     {
         yield return new WaitForSeconds(3.0f);
-        _speedBoost = false;
+		SpeedBoostStatus = false;
 		MaxSpeed = MAX_SPEED;
 
     }

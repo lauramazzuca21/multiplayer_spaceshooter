@@ -12,8 +12,22 @@ public abstract class Ship : MonoBehaviour {
 	private float _maxSpeed;
 	private float _rotSpeed; //speed we can turn in 1 sec
 	private float _shipBoundaryRadius;
+
 	private int _health;
 	private float _damageDealt;
+
+	private bool _speedBoost = false;
+    private bool _shields = false;
+    private bool _enhancedShot = false;
+
+	[SerializeField]
+	private GameObject destroyedAnimation;
+
+    public GameObject DestroyedAnimation
+    {
+        get { return this.destroyedAnimation; }
+        set { this.destroyedAnimation = value; }
+    }
 
 	public float MaxSpeed
     {
@@ -43,6 +57,24 @@ public abstract class Ship : MonoBehaviour {
     {
 		get { return this._damageDealt; }
 		set { this._damageDealt = value; }
+    }
+
+	public bool SpeedBoostStatus
+    {
+		get { return this._speedBoost; }
+		set { this._speedBoost = value; }
+    }
+
+	public bool ShieldsStatus
+    {
+        get { return this._shields; }
+        set { this._shields = value; }
+    }
+
+	public bool EnhancedShotStatus
+    {
+		get { return this._enhancedShot; }
+		set { this._enhancedShot = value; }
     }
 
 	// Use this for initialization

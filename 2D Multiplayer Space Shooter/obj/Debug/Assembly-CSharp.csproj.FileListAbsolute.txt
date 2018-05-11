@@ -1,0 +1,2 @@
+/Users/lallu/gitrep/multiplayer_spaceshooter/2D Multiplayer Space Shooter/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache
+/Users/lallu/gitrep/multiplayer_spaceshooter/2D Multiplayer Space Shooter/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache

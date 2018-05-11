@@ -1,12 +1,9 @@
 ﻿<Properties StartupConfiguration="{A5768794-FD75-F899-040A-BE791940DC3B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ships/FastShip.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ships/ShipCollisionHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/Ships/ShipCollisionHandler.cs" Line="40" Column="3" />
-      <File FileName="Assets/Scripts/Ships/FastShip.cs" Line="66" Column="40" />
-      <File FileName="Assets/Scripts/Ships/StrongShip.cs" Line="75" Column="40" />
-      <File FileName="Assets/Scripts/PowerUps/SpeedBoost.cs" Line="30" Column="31" />
-      <File FileName="Assets/Scripts/PowerUps/PowerUpController.cs" Line="11" Column="18" />
+      <File FileName="Assets/Scripts/Ships/ShipCollisionHandler.cs" Line="56" Column="3" />
+      <File FileName="Assets/Scripts/Ships/StrongShip.cs" Line="13" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

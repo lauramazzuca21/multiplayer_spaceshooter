@@ -10,11 +10,7 @@ public class FastShip : Ship
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
 	private static readonly int HEALTH = 15;
 	private static readonly float DAMAGE_DEALT = 0.5f;
-
-	private bool _speedBoost = false;
-	private bool _shields = false;
-	private bool _enhancedShot = false;
-
+   
 	override protected void Start()
     {
 		MaxSpeed = MAX_SPEED;
@@ -60,34 +56,48 @@ public class FastShip : Ship
         //also valid, unless u wanna do stuff in betweed : transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
 
-	override public void SpeedBoostOn(float speedMultiplyer) 
-	{ 
-		_speedBoost = true;
-		MaxSpeed = MaxSpeed * speedMultiplyer;
-
-		StartCoroutine(this.SpeedBoostPowerDown());
-	} 
-
-	protected IEnumerator SpeedBoostPowerDown() 
-	{
-		yield return new WaitForSeconds(5.0f);
-		_speedBoost = true;
-	}
-
-	override public void ShieldsOn() { _shields = true; } 
-
-	protected IEnumerator ShieldsPowerDown()
+	public override void EnhancedShotOn()
     {
-        yield return new WaitForSeconds(5.0f);
-		_shields = true;
+        EnhancedShotStatus = true;
+
+        StartCoroutine(this.EnhancedShotPowerDown());
     }
 
-	override public void EnhancedShotOn() { _enhancedShot = true; } 
-
-	protected IEnumerator EnhancedShotPowerDown()
+    protected IEnumerator EnhancedShotPowerDown()
     {
-        yield return new WaitForSeconds(5.0f);
-		_enhancedShot = true;
+        yield return new WaitForSeconds(3.0f);
+        EnhancedShotStatus = false;
+
+    }
+
+    public override void ShieldsOn()
+    {
+        ShieldsStatus = true;
+
+        StartCoroutine(this.ShieldsPowerDown());
+    }
+
+    protected IEnumerator ShieldsPowerDown()
+    {
+        yield return new WaitForSeconds(3.0f);
+        ShieldsStatus = false;
+
+    }
+
+    public override void SpeedBoostOn(float speedMultiplyer)
+    {
+        SpeedBoostStatus = true;
+        MaxSpeed = MaxSpeed * speedMultiplyer;
+        StartCoroutine(this.SpeedBoostPowerDown());
+
+    }
+
+    protected IEnumerator SpeedBoostPowerDown()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SpeedBoostStatus = false;
+        MaxSpeed = MAX_SPEED;
+
     }
 
 }

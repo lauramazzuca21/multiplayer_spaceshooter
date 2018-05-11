@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 60953394939708456}
   - component: {fileID: 114289779169180530}
   - component: {fileID: 114300941415914080}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: strongShip_greenPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -39,10 +39,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4615706358565972}
-  - component: {fileID: 114910989886075718}
-  m_Layer: 8
+  - component: {fileID: 114046076041051208}
+  m_Layer: 0
   m_Name: GunSpotDefault
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,19 @@ PolygonCollider2D:
       - {x: 0.42084575, y: -0.089542076}
       - {x: 0.44648767, y: -0.13533229}
       - {x: 0.45894456, y: -0.13389969}
+--- !u!114 &114046076041051208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1223540508771118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe909bcf973d4217a67cafcc42e5e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
+    type: 2}
 --- !u!114 &114289779169180530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3859b4be6c69345bcbb98e0fea65a72e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  _correctLayer: 0
 --- !u!114 &114300941415914080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,21 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 0
---- !u!114 &114910989886075718
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1223540508771118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99642225b4d647eea4519f4b49cdb5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
+  destroyedAnimation: {fileID: 1764022277387982, guid: 63848a8e07b0b49d993ccaf68b999f8b,
     type: 2}
-  fireDelay: 0.25
-  cooldownTimer: 0
 --- !u!212 &212085601933530056
 SpriteRenderer:
   m_ObjectHideFlags: 1
