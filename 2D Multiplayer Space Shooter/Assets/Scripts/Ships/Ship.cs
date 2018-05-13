@@ -14,7 +14,7 @@ public abstract class Ship : MonoBehaviour {
 	private float _shipBoundaryRadius;
 
 	private float _health;
-	private float _damageDealt;
+	private float _damageDealtModifier;
 
 	private bool _speedBoost = false;
     private bool _shields = false;
@@ -53,10 +53,10 @@ public abstract class Ship : MonoBehaviour {
         set { this._health = value; }
     }
 
-	public float DamageDealt
+	public float DamageDealtModifier
     {
-		get { return this._damageDealt; }
-		set { this._damageDealt = value; }
+		get { return this._damageDealtModifier; }
+		set { this._damageDealtModifier = value; }
     }
 
 	public bool SpeedBoostStatus
@@ -116,7 +116,7 @@ public abstract class Ship : MonoBehaviour {
 		return pos;
 	}
       
-	public abstract void EnhancedShotOn(float shotDamage, float shotSpeed, float shotFireDelay);
+	public abstract void EnhancedShotOn(float shotDamage, float shotSpeed);
 
 	public abstract void ShieldsOn();
 

@@ -46,7 +46,7 @@ public class ShipCollisionHandler : MonoBehaviour
 	private void Die() 
 	{
 
-		Instantiate(_owner.DestroyedAnimation, _owner.transform.position, _owner.transform.rotation);
+		//Instantiate(_owner.DestroyedAnimation, _owner.transform.position, _owner.transform.rotation);
 		Destroy(gameObject);
 	}
 

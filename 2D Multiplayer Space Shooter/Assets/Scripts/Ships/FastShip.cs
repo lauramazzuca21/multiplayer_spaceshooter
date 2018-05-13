@@ -9,7 +9,7 @@ public class FastShip : Ship
 	private static readonly float ROT_SPEED = 180f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
 	private static readonly int HEALTH = 15;
-	private static readonly float DAMAGE_DEALT = 0.5f;
+	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
    
 	override protected void Start()
     {
@@ -18,7 +18,7 @@ public class FastShip : Ship
 		ShipBoundaryRadius = BOUNDARY_RADIUS;
 
 		Health = HEALTH;
-		DamageDealt = DAMAGE_DEALT;
+		DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
     }
 
 		// Update is called once per frame
@@ -56,7 +56,7 @@ public class FastShip : Ship
         //also valid, unless u wanna do stuff in betweed : transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
 
-	public override void EnhancedShotOn()
+	public override void EnhancedShotOn(float shotDamage, float shotSpeed)
     {
         EnhancedShotStatus = true;
 

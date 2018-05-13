@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour {
 
-
-	private static readonly float DEFAULT_FIREDELAY = 0.25f;
+    private static readonly float DEFAULT_FIREDELAY = 0.25f;
 
 	[SerializeField]
 	private GameObject _bulletPrefab;
-	private Ship _owner;
-	private float _enhancedShotDelay = 0;
-	private float _cooldownTimer = 0;
+	[SerializeField]
+	private GameObject _enhancedBulletPrefab;
 
-	public float EnhancedShotDelay 
-	{
-		get { return this._enhancedShotDelay; }
-		set { this._enhancedShotDelay = value; }
-	}
-   
+	private Ship _owner;   
+	private Bullet bullet;
+
+	private float _cooldownTimer;
+ 
+	private float _enhancedShotDamage;
+	private float _enhancedShotSpeed;  
+
+	public float EnhancedShotDamage
+    {
+		get { return this._enhancedShotDamage; }
+		set { this._enhancedShotDamage = value; }
+    }
+
+	public float EnhancedShotSpeed
+    {
+		get { return this._enhancedShotSpeed; }
+		set { this._enhancedShotSpeed = value; }
+    }
 
 	// Use this for initialization
 	private void Start () {
 		_owner = gameObject.GetComponentInParent<Ship>();
+		_cooldownTimer = DEFAULT_FIREDELAY;
 	}
 
 	// Update is called once per frame
@@ -32,17 +44,20 @@ public class Shooting : MonoBehaviour {
 
 			if (_owner.EnhancedShotStatus)
 			{
-				_cooldownTimer = DEFAULT_FIREDELAY + EnhancedShotDelay;
+				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
+				bullet.Damage = (bullet.Damage + EnhancedShotDamage) * _owner.DamageDealtModifier;
+                bullet.Speed += EnhancedShotSpeed;
+				_owner.EnhancedShotStatus = false;
 
-			} else 
+			} 
+			else 
 			{
 				_cooldownTimer = DEFAULT_FIREDELAY;
 
-                Instantiate(_bulletPrefab, transform.position, transform.rotation);
+				bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
+				bullet.Damage = bullet.Damage * _owner.DamageDealtModifier;
 			}
 
 		}
 	}
-
-
 }

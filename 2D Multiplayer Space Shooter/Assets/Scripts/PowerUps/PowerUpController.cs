@@ -5,11 +5,13 @@ public class PowerUpController : MonoBehaviour
 {
 	private float yBoundaries;
 	private float xBoundaries;
-	private float TIMER_VALUE = 20f;
+	private float TIMER_VALUE = 10f;
 	private float timer;
 	private Vector3 randomSpawn;
 	[SerializeField]
-	private GameObject speedBoostPrefab;
+	private GameObject _speedBoostPrefab;
+	[SerializeField]
+    private GameObject _enhancedShotPrefab;
     // Use this for initialization
     void Start()
     {
@@ -30,7 +32,15 @@ public class PowerUpController : MonoBehaviour
 			//int powerToGenerate = (int) (Random.value * 100) % powerUps.Length;
 			randomSpawn.y = Random.Range(-yBoundaries, yBoundaries);
 			randomSpawn.x = Random.Range(-xBoundaries, xBoundaries);
-			Instantiate(speedBoostPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
+			if (((int)Random.value % 2) == 1) 
+			{
+				Instantiate(_speedBoostPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
+			}
+			else
+			{
+				Instantiate(_enhancedShotPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
+
+			}
 			timer = TIMER_VALUE;
 		}
     }

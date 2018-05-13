@@ -8,7 +8,7 @@ public class ResistantShip : Ship
 	private static readonly float ROT_SPEED = 110f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
 	private static readonly int HEALTH = 30;
-	private static readonly float DAMAGE_DEALT = 0.5f;
+	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
 
 	// Use this for initialization
 	override protected void Start()
@@ -18,7 +18,7 @@ public class ResistantShip : Ship
         ShipBoundaryRadius = BOUNDARY_RADIUS;
 
         Health = HEALTH;
-        DamageDealt = DAMAGE_DEALT;
+		DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class ResistantShip : Ship
         transform.position = pos;
 	}
 
-	public override void EnhancedShotOn()
+	public override void EnhancedShotOn(float shotDamage, float shotSpeed)
     {
         EnhancedShotStatus = true;
 
