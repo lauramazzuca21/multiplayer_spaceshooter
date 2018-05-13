@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 0
-  destroyedAnimation: {fileID: 1764022277387982, guid: 63848a8e07b0b49d993ccaf68b999f8b,
+  destroyedAnimation: {fileID: 1161884596856244, guid: a43979152004d48a78eb5f8645d2926e,
     type: 2}
 --- !u!212 &212085601933530056
 SpriteRenderer:

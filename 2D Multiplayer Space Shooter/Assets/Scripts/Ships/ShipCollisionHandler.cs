@@ -8,7 +8,6 @@ public class ShipCollisionHandler : MonoBehaviour
 
     //in physics 2D Invulnerable layer is set to not collide with anything
 	private static readonly int INVULN_LAYER = 12;
-	private static readonly String POWERUP = "PowerUp";
 	private static readonly float INVULN_TIMER = 0.5f;
 
 	[SerializeField]
@@ -35,16 +34,10 @@ public class ShipCollisionHandler : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+
+    public void takeDamage(float damageTaken)
     {
-  
-
-    }
-
-
-    private void takeDamage()
-    {
-		_owner.Health--;
+		_owner.Health -= damageTaken;
         gameObject.layer = INVULN_LAYER;
 		_invulnTimer = INVULN_TIMER;
     }

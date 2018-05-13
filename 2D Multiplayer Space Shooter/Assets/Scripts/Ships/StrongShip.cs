@@ -10,8 +10,10 @@ public class StrongShip : Ship
 	private static readonly float MAX_SPEED = 5f;
 	private static readonly float ROT_SPEED = 150f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly int HEALTH = 20;
+	private static readonly float HEALTH = 20;
 	private static readonly float DAMAGE_DEALT = 1f;
+
+	private Shooting _shooting;
 
 	// Use this for initialization
 	override protected void Start()
@@ -23,7 +25,7 @@ public class StrongShip : Ship
         Health = HEALTH;
         DamageDealt = DAMAGE_DEALT;
 
-       
+		_shooting = gameObject.GetComponentInChildren<Shooting>();
     }
 
     // Update is called once per frame
@@ -52,10 +54,10 @@ public class StrongShip : Ship
         transform.position = pos;
     }
 
-	public override void EnhancedShotOn()
+	public override void EnhancedShotOn(float shotDamage, float shotSpeed, float shotFireDelay)
     {
 		EnhancedShotStatus = true;
-        
+		_shooting.EnhancedShotDelay = shotFireDelay;
 		StartCoroutine(this.EnhancedShotPowerDown());
 	}
 
@@ -69,13 +71,12 @@ public class StrongShip : Ship
     public override void ShieldsOn()
     {
 		ShieldsStatus = true;
-        
         StartCoroutine(this.ShieldsPowerDown());    
 	}
 
 	protected IEnumerator ShieldsPowerDown()
     {
-        yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(3.0f);
 		ShieldsStatus = false;
 
     }

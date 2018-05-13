@@ -3,7 +3,12 @@ using System.Collections;
 
 public class EnhancedShot : PowerUp
 {
-	private const float LIFE_TIMER = 10f;
+	private static readonly float LIFE_TIMER = 10f;
+	private static readonly float SHOT_DAMAGE = 10f;
+	private static readonly float SHOT_SPEED = 10f;
+	private static readonly float SHOT_FIREDELAY = 10f;
+
+
     // Use this for initialization
     override protected void Start()
     {
@@ -27,7 +32,7 @@ public class EnhancedShot : PowerUp
 
         if (shipCollided != null)
         {
-            shipCollided.EnhancedShotOn();
+			shipCollided.EnhancedShotOn(SHOT_DAMAGE, SHOT_SPEED, SHOT_FIREDELAY);
             this.DestroyPowerUp();
         }
 
