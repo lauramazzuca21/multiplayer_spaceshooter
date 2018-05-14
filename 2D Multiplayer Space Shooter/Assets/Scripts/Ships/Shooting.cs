@@ -40,10 +40,12 @@ public class Shooting : MonoBehaviour {
 	// Update is called once per frame
 	private void Update () {
 		_cooldownTimer -= Time.deltaTime;
+
 		if (Input.GetButton("Fire1") && _cooldownTimer <= 0) {
 
 			if (_owner.EnhancedShotStatus)
 			{
+				_cooldownTimer = DEFAULT_FIREDELAY;
 				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
 				bullet.Damage = (bullet.Damage + EnhancedShotDamage) * _owner.DamageDealtModifier;
                 bullet.Speed += EnhancedShotSpeed;

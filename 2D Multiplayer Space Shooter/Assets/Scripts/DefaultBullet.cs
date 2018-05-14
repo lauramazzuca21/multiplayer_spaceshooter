@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DefaultBullet : Bullet
 {
-	protected static readonly float DEFAULT_SPEED = 5f;
+	protected static readonly float DEFAULT_SPEED = 8f;
     protected static readonly float DEFAULT_DAMAGE = 5f;
    
     // Use this for initialization

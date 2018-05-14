@@ -1,4 +1,6 @@
-﻿using System;
+﻿//STILL DON'T KNOW IF IT'S BETTER TO KEEP THIS CLASS OR MOVE ITS CONTENT IN SHIP OR SOMETHING
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

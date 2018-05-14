@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Controller for PowerUps spawning every tot seconds
+
+using UnityEngine;
 using System.Collections;
 
 public class PowerUpController : MonoBehaviour
@@ -32,6 +34,7 @@ public class PowerUpController : MonoBehaviour
 			//int powerToGenerate = (int) (Random.value * 100) % powerUps.Length;
 			randomSpawn.y = Random.Range(-yBoundaries, yBoundaries);
 			randomSpawn.x = Random.Range(-xBoundaries, xBoundaries);
+            //obviously doesn't work very well since it pretty much always generates an odd number
 			if (((int)Random.value % 2) == 1) 
 			{
 				Instantiate(_speedBoostPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));

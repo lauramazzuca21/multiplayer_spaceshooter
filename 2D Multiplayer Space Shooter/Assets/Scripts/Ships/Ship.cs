@@ -1,21 +1,25 @@
-﻿using System;
+﻿//Abstract class to define what a generic ship should implement
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ship : MonoBehaviour {
 
-	//if i declare them public i can change their values in unity
-	//changing the number here now it only changes the default so if i create a new ship i get this but if i change it in unity that'll be the used one
-    
-	[SerializeField]
-	private float _maxSpeed;
+        
+	[SerializeField] //field right under the declaration will be visible in unity
+	private float _maxSpeed; //speed we can reach in 1 sec
 	private float _rotSpeed; //speed we can turn in 1 sec
-	private float _shipBoundaryRadius;
+	private float _shipBoundaryRadius; //radius of the ship to not go over the screen limits
 
 	private float _health;
-	private float _damageDealtModifier;
+	//modifier for each ship that will be passed to Shooting and then Bullet to make the damage dealt balanced.
+    // The modifier is supposed to be a percentage so it must in the [0.0, 1.0] range.
+	private float _damageDealtModifier; 
 
+    //bools for powerup activation tracking
 	private bool _speedBoost = false;
     private bool _shields = false;
     private bool _enhancedShot = false;
@@ -87,6 +91,7 @@ public abstract class Ship : MonoBehaviour {
 
 	protected abstract void Movement();
 
+    //implemented here because the algorythm must be equal to all ships.
 	protected Vector3 BoundariesRestrictions(Vector3 pos)
 	{
 		if (pos.y + _shipBoundaryRadius > Camera.main.orthographicSize)
@@ -115,13 +120,13 @@ public abstract class Ship : MonoBehaviour {
 
 		return pos;
 	}
-      
+     
+	// ****   PowerUps handlers   **** \\
+	//these public classes will be directly called by the respective PoweUps once they collide with a ship
 	public abstract void EnhancedShotOn(float shotDamage, float shotSpeed);
 
 	public abstract void ShieldsOn();
 
 	public abstract void SpeedBoostOn(float speedMultiplyer);
-
-	//Updates once per pick of the physics frame
-	private void FixedUpdate () {}
+   
 }

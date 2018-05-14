@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿//FOR EXTENDED INFO ABOUT METHODS AND VARIABLES CHECK SHIP CLASS AND STRONG SHIP CLASS
+
+// Abilities:
+// * high speed (both linear and rotational);     * below average health;      * average damage dealt modifier
+
+using UnityEngine;
 using System.Collections;
 
 public class FastShip : Ship
@@ -29,31 +34,22 @@ public class FastShip : Ship
 
 	protected override void Movement()
     {
-        //** ROTATE THE SHIP **//
-        Quaternion rot = transform.rotation;
+		Quaternion rot = transform.rotation;
         float z = rot.eulerAngles.z;
 
-        //minus to get the std rotaton (dxdx, sxsx)
         z -= Input.GetAxis("Horizontal") * RotSpeed * Time.deltaTime;
         rot = Quaternion.Euler(0, 0, z);
         transform.rotation = rot;
 
-        //** MOVE THE SHIP **//
         Vector3 pos = transform.position;
 
-        //the sensitivity under InputManager gives the sensation of slow start and build up of velocity
-        //this is what we want to have so it's independant from both keyboard and joystick
-        // Input.GetAxis returns a FLOAT between -1.0 and 1.0 0 if not pressed
         Vector3 newPos = new Vector3(0, Input.GetAxis("Vertical") * MaxSpeed * Time.deltaTime, 0);
 
         pos += rot * newPos;
 
-        //RESTRICT player to the cameras boundaries
         pos = this.BoundariesRestrictions(pos);
 
         transform.position = pos;
-
-        //also valid, unless u wanna do stuff in betweed : transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
 
 	public override void EnhancedShotOn(float shotDamage, float shotSpeed)

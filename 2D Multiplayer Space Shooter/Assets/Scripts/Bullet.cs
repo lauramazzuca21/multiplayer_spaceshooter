@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Abstract class to define what a generic bullet should implement
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +8,7 @@ public abstract class Bullet : MonoBehaviour {
 
 	private float _speed;
     private float _damage;
-	private float _widthOrtho;
+	private float _widthOrtho; // this will be initialized at the beginning ( void Start() ) to have the ortho width of the screen
 
 	public float Speed
     {
@@ -36,5 +38,6 @@ public abstract class Bullet : MonoBehaviour {
 	//** MOVE THE BULLET **//
 	protected abstract void Movement();
 
+    //COLLISION HANDLER
 	protected abstract void OnTriggerEnter2D(Collider2D collision);
 }

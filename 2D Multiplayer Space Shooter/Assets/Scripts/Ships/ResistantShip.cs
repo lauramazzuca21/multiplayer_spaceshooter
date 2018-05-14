@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿//FOR EXTENDED INFO ABOUT METHODS AND VARIABLES CHECK SHIP CLASS AND STRONG SHIP CLASS
+
+// Abilities:
+// * low speed (both linear and rotational);     * high health;      * average damage dealt modifier
+
+using UnityEngine;
 using System.Collections;
 
 public class ResistantShip : Ship
