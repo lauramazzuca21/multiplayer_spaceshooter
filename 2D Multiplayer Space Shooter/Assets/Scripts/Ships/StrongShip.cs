@@ -2,7 +2,6 @@
 // * average speed (both linear and rotational);     * average health;      * high damage dealt modifier
 
 
-
 using UnityEngine;
 using System.Collections;
 
@@ -33,7 +32,8 @@ public class StrongShip : Ship
 
     // Update is called once per frame
 	override protected void Update()
-    {
+	{
+
 		Movement();
     }
 
