@@ -44,7 +44,7 @@ public class EnhancedBullet : Bullet
 	protected override void OnTriggerEnter2D(Collider2D collision)
     {
 
-        ShipCollisionHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipCollisionHandler>();
+		ShipLifeHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipLifeHandler>();
         if (shipCollidedWithHandler != null)
         {
             shipCollidedWithHandler.takeDamage(Damage);
