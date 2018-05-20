@@ -6,6 +6,7 @@ public class SpeedBoost : PowerUp
 
 	private const float LIFE_TIMER = 10f;
 	// Use this for initialization
+
 	override protected void Start()
     {
 		this.lifeTimer = LIFE_TIMER;
