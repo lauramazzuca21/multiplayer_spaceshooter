@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class PowerUp : MonoBehaviour
 {
 	protected float lifeTimer;
+
 	// Use this for initialization
 	protected abstract void Start();
 
