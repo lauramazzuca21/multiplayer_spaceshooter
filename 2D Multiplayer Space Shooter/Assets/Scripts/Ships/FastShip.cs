@@ -1,4 +1,4 @@
-﻿//FOR EXTENDED INFO ABOUT METHODS AND VARIABLES CHECK SHIP CLASS AND STRONG SHIP CLASS
+﻿//FOR EXTENDED INFO ABOUT METHODS AND VARIABLES CHECK SHIP CLASS
 
 // Abilities:
 // * high speed (both linear and rotational);     * below average health;      * average damage dealt modifier

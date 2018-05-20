@@ -1,4 +1,6 @@
-﻿// Abilities:
+﻿//FOR EXTENDED INFO ABOUT METHODS AND VARIABLES CHECK SHIP CLASS
+
+// Abilities:
 // * average speed (both linear and rotational);     * average health;      * high damage dealt modifier
 
 
