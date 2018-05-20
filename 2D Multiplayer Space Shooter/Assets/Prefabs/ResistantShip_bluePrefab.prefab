@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212241622582900410}
   - component: {fileID: 114428761604657704}
   - component: {fileID: 114350143077465596}
+  - component: {fileID: 114938797348423418}
   m_Layer: 0
   m_Name: ResistantShip_bluePrefab
   m_TagString: Untagged
@@ -83,8 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe909bcf973d4217a67cafcc42e5e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
+  _enhancedBulletPrefab: {fileID: 0}
 --- !u!114 &114350143077465596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +111,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 0
   destroyedAnimation: {fileID: 0}
+--- !u!114 &114938797348423418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889858434701042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 88
+    i1: 171
+    i2: 190
+    i3: 17
+    i4: 212
+    i5: 10
+    i6: 164
+    i7: 215
+    i8: 137
+    i9: 252
+    i10: 26
+    i11: 152
+    i12: 26
+    i13: 137
+    i14: 47
+    i15: 115
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &212241622582900410
 SpriteRenderer:
   m_ObjectHideFlags: 1

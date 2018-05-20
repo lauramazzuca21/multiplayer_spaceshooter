@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212851083981713572}
   - component: {fileID: 114285025973579666}
   - component: {fileID: 114746370223884158}
+  - component: {fileID: 114779404362374178}
   m_Layer: 0
   m_Name: FastShip_redPrefab
   m_TagString: Untagged
@@ -96,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe909bcf973d4217a67cafcc42e5e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
+  _enhancedBulletPrefab: {fileID: 0}
 --- !u!114 &114746370223884158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +111,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _correctLayer: 0
+--- !u!114 &114779404362374178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1437415339161086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 84
+    i1: 147
+    i2: 103
+    i3: 57
+    i4: 39
+    i5: 48
+    i6: 20
+    i7: 156
+    i8: 138
+    i9: 27
+    i10: 44
+    i11: 235
+    i12: 135
+    i13: 211
+    i14: 60
+    i15: 172
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &212851083981713572
 SpriteRenderer:
   m_ObjectHideFlags: 1

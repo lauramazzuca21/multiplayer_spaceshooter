@@ -28,7 +28,7 @@ public class FastShip : Ship
 
 		// Update is called once per frame
 	override protected void Update()
-    {
+    {      
 		Movement();
     }
 
