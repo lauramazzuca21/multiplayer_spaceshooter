@@ -2,7 +2,6 @@
 // * average speed (both linear and rotational);     * average health;      * high damage dealt modifier
 
 
-
 using UnityEngine;
 using System.Collections;
 
@@ -21,19 +20,18 @@ public class StrongShip : Ship
 	// Use this for initialization
 	override protected void Start()
     {
-		MaxSpeed = MAX_SPEED;
-        RotSpeed = ROT_SPEED;
+        MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
+        RotSpeed = ROT_SPEED; //speed we can turn in 1 sec
         ShipBoundaryRadius = BOUNDARY_RADIUS;
-        
-        Health = HEALTH;
-		DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
 
-		_shooting = gameObject.GetComponentInChildren<Shooting>();
+        Health = HEALTH;
+        DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
     }
 
     // Update is called once per frame
 	override protected void Update()
-    {
+	{
+
 		Movement();
     }
 

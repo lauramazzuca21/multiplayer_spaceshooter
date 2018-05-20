@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1889858434701042}
   m_IsPrefabParent: 1
+--- !u!1 &1847340539073824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4680213628073276}
+  m_Layer: 0
+  m_Name: ShieldSpotDefault
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1889858434701042
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,6 +37,8 @@ GameObject:
   - component: {fileID: 212241622582900410}
   - component: {fileID: 114428761604657704}
   - component: {fileID: 114350143077465596}
+  - component: {fileID: 60447698056993500}
+  - component: {fileID: 50706091103317168}
   m_Layer: 0
   m_Name: ResistantShip_bluePrefab
   m_TagString: Untagged
@@ -58,6 +75,19 @@ Transform:
   m_Father: {fileID: 4789627786552172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4680213628073276
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847340539073824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.173, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4789627786552172}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4789627786552172
 Transform:
   m_ObjectHideFlags: 1
@@ -65,13 +95,81 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889858434701042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6940212, y: -0.69606423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4070171540542358}
+  - {fileID: 4680213628073276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50706091103317168
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889858434701042}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60447698056993500
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889858434701042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.36}
+    oldSize: {x: 1.12, y: 0.75}
+    newSize: {x: 1.12, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37397218, y: -0.2415688}
+      - {x: 0.506986, y: -0.037712336}
+      - {x: 0.5626508, y: 0.050239563}
+      - {x: 0.48409593, y: 0.09614372}
+      - {x: 0.4595207, y: 0.093732595}
+      - {x: 0.15487325, y: 0.2568481}
+      - {x: 0.14120555, y: 0.27963686}
+      - {x: 0.10530138, y: 0.29565716}
+      - {x: 0.030842304, y: 0.48000002}
+      - {x: -0.034335494, y: 0.4720478}
+      - {x: -0.109876394, y: 0.30301404}
+      - {x: -0.14821482, y: 0.25883293}
+      - {x: -0.4581095, y: 0.076728344}
+      - {x: -0.46987653, y: 0.10060263}
+      - {x: -0.56265056, y: 0.052171707}
+      - {x: -0.4922874, y: -0.061445236}
+      - {x: -0.3761438, y: -0.24084234}
+      - {x: -0.16819155, y: -0.19493842}
+      - {x: -0.13674664, y: -0.24614382}
+      - {x: -0.12772, y: -0.26999998}
+      - {x: 0.12108195, y: -0.2703631}
+      - {x: 0.16625988, y: -0.1969862}
+      - {x: 0.2998762, y: -0.21493816}
 --- !u!114 &114088745751832214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe909bcf973d4217a67cafcc42e5e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
+  _bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
+    type: 2}
+  _enhancedBulletPrefab: {fileID: 1546743313966864, guid: 29b016395d61b458599cece8319d87cd,
     type: 2}
 --- !u!114 &114350143077465596
 MonoBehaviour:
