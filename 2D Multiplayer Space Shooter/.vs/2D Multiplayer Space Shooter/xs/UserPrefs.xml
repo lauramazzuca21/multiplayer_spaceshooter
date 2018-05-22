@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{A5768794-FD75-F899-040A-BE791940DC3B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Main_Menu/NewMonoBehaviour.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ships/FastShip.cs">
     <Files>
       <File FileName="Assets/Scripts/Ships/ShieldHandler.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Ships/ShipLifeHandler.cs" Line="8" Column="29" />
       <File FileName="Assets/Scripts/Ships/StrongShip.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Ships/Shooting.cs" Line="9" Column="2" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DefaultBullet.cs" Line="47" Column="94" />
       <File FileName="Assets/Scripts/EnhancedBullet.cs" Line="47" Column="94" />
-      <File FileName="Assets/Scripts/Main_Menu/NewMonoBehaviour.cs" Line="16" Column="6" />
+      <File FileName="Assets/Scripts/Main_Menu/MusicPlayer.cs" Line="15" Column="35" />
+      <File FileName="Assets/Scripts/Ships/FastShip.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
