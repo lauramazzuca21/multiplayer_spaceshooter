@@ -11,11 +11,12 @@ public class ResistantShip : Ship
 	private static readonly float MAX_SPEED = 3f;
 	private static readonly float ROT_SPEED = 110f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly int HEALTH = 30;
+	private static readonly float HEALTH = 30f;
 	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
 
     //component to call Shooting methods
     private Shooting _shooting;
+	private ShieldHandler _shieldHandler;
 
     // Use this for initialization
     override protected void Start()
@@ -26,6 +27,11 @@ public class ResistantShip : Ship
 
         Health = HEALTH;
 		DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
+
+		_shooting = gameObject.GetComponentInChildren<Shooting>();
+		_shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
+
+
     }
 
     // Update is called once per frame
@@ -71,15 +77,18 @@ public class ResistantShip : Ship
         _shooting.EnhancedShotDamage = shotDamage;
         _shooting.EnhancedShotSpeed = shotSpeed;
     }
-    public override void ShieldsOn()
+
+	public override void ShieldsOn()
     {
         ShieldsStatus = true;
+        _shieldHandler.ActivateShield();
         StartCoroutine(this.ShieldsPowerDown());
     }
 
     protected IEnumerator ShieldsPowerDown()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(150.0f);
+        _shieldHandler.DeactivateShield();
         ShieldsStatus = false;
 
     }
@@ -92,9 +101,7 @@ public class ResistantShip : Ship
         //start the automatic power down coroutine
         StartCoroutine(this.SpeedBoostPowerDown());
 
-    }
-
-
+    }   
 
     //IEnumeraator grants the possibility to wait inactively for a certain amount of time
     // and then continues to execute the code ater the yield call.

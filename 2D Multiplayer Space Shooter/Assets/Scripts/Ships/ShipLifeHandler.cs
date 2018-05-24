@@ -17,16 +17,28 @@ public class ShipLifeHandler : MonoBehaviour
 	private float _invulnTimer = 0;
 	private Ship _owner;
 
+	private Animator _deathAnimation;
+
+
+	//public Animator DeathAnimation
+    //{
+    //    get { return this._deathAnimation; }
+    //    set { this._deathAnimation = value; }
+    //}
+
+
 	private void Start()
 	{
 		_correctLayer = gameObject.layer;
 		_owner = gameObject.GetComponent<Ship>();
+
+		_deathAnimation = GetComponent<Animator>();
 	}
 
 
 	private void Update()
 	{
-		if (_owner.Health <= 0) Die();
+		if (_owner.Health <= 0) Die(); //_deathAnimation.SetBool("ShipIsDead", true);
 
 		if (this.gameObject.layer == INVULN_LAYER)
 		{
@@ -39,17 +51,18 @@ public class ShipLifeHandler : MonoBehaviour
 
     public void takeDamage(float damageTaken)
     {
-		_owner.Health -= damageTaken;
-        gameObject.layer = INVULN_LAYER;
-		_invulnTimer = INVULN_TIMER;
+		if (!_owner.ShieldsStatus)
+		{
+			_owner.Health -= damageTaken;
+            gameObject.layer = INVULN_LAYER;
+            _invulnTimer = INVULN_TIMER;
+		}
     }
 
 
-	private void Die() 
+	public void Die() 
 	{
-
-		//Instantiate(_owner.DestroyedAnimation, _owner.transform.position, _owner.transform.rotation);
-		Destroy(gameObject);
+    		Destroy(gameObject);
 	}
 
    

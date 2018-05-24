@@ -18,6 +18,8 @@ public class StrongShip : Ship
 
     //component to call Shooting methods
 	private Shooting _shooting;
+	private ShieldHandler _shieldHandler;
+
 
 	// Use this for initialization
 	override protected void Start()
@@ -28,6 +30,9 @@ public class StrongShip : Ship
 
         Health = HEALTH;
         DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
+
+		_shooting = gameObject.GetComponentInChildren<Shooting>();
+		_shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
     }
 
     // Update is called once per frame
@@ -78,12 +83,14 @@ public class StrongShip : Ship
     public override void ShieldsOn()
     {
 		ShieldsStatus = true;
+		_shieldHandler.ActivateShield();
         StartCoroutine(this.ShieldsPowerDown());    
 	}
 
 	protected IEnumerator ShieldsPowerDown()
     {
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(150.0f);
+		_shieldHandler.DeactivateShield();
 		ShieldsStatus = false;
 
     }

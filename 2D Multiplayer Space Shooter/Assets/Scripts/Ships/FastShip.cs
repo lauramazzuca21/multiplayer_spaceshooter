@@ -13,11 +13,12 @@ public class FastShip : Ship
 	private static readonly float MAX_SPEED = 7f;
 	private static readonly float ROT_SPEED = 180f;
 	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly int HEALTH = 15;
+	private static readonly float HEALTH = 15f;
 	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
 
     //component to call Shooting methods
     private Shooting _shooting;
+	private ShieldHandler _shieldHandler;
 
     override protected void Start()
     {
@@ -27,9 +28,13 @@ public class FastShip : Ship
 
         Health = HEALTH;
         DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
+
+		_shooting = gameObject.GetComponentInChildren<Shooting>();
+		_shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
+
     }
 
-		// Update is called once per frame
+	// Update is called once per frame
 	override protected void Update()
     {      
 		Movement();
@@ -37,6 +42,10 @@ public class FastShip : Ship
 
     protected override void Movement()
     {
+		/* Input.GetAxis is what we want to have 
+        * so it's independant from both keyboard and joystick */
+
+
         //** ROTATE THE SHIP **//
         Quaternion rot = transform.rotation;
         float z = rot.eulerAngles.z;
@@ -49,7 +58,6 @@ public class FastShip : Ship
         //** MOVE THE SHIP **//
         Vector3 pos = transform.position;
 
-        //this is what we want to have so it's independant from both keyboard and joystick
         // Input.GetAxis returns a FLOAT between -1.0 and 1.0 0 if not pressed
         Vector3 newPos = new Vector3(0, Input.GetAxis("Vertical") * MaxSpeed * Time.deltaTime, 0);
 
@@ -60,28 +68,33 @@ public class FastShip : Ship
 
         transform.position = pos;
 
-        //also valid, unless u wanna do stuff in betweed :
-        //transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
+		/* Also valid, unless u wanna do stuff in betweed :
+         * transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))*/
     }
 
     public override void EnhancedShotOn(float shotDamage, float shotSpeed)
     {
         EnhancedShotStatus = true;
-        //changes the attributes of Shooting. 
-        //Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
+
+        /* Changes the attributes of Shooting. 
+         * Power down handled by Shooting after one EnhancedShot 
+         * is shot setting false EnhancedShotStatus. */
+
         _shooting.EnhancedShotDamage = shotDamage;
         _shooting.EnhancedShotSpeed = shotSpeed;
     }
 
-    public override void ShieldsOn()
+	public override void ShieldsOn()
     {
         ShieldsStatus = true;
+        _shieldHandler.ActivateShield();
         StartCoroutine(this.ShieldsPowerDown());
     }
 
     protected IEnumerator ShieldsPowerDown()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(150.0f);
+        _shieldHandler.DeactivateShield();
         ShieldsStatus = false;
 
     }
@@ -96,8 +109,9 @@ public class FastShip : Ship
 
     }
 
-    //IEnumeraator grants the possibility to wait inactively for a certain amount of time
-    // and then continues to execute the code ater the yield call.
+    /* IEnumerator grants the possibility to wait inactively 
+     * for a certain amount of time and then continues to 
+     * execute the code ater the yield call. */
     protected IEnumerator SpeedBoostPowerDown()
     {
         yield return new WaitForSeconds(3.0f);

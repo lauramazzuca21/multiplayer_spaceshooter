@@ -31,6 +31,7 @@ public class EnhancedShot : PowerUp
 
         if (shipCollided != null)
         {
+			Debug.Log("Ship Collided, shoud destroy object");
 			shipCollided.EnhancedShotOn(SHOT_DAMAGE, SHOT_SPEED);
             this.DestroyPowerUp();
         }

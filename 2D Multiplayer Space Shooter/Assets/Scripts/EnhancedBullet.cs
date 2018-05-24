@@ -6,10 +6,10 @@ public class EnhancedBullet : Bullet
 	protected static readonly float DEFAULT_SPEED = 3f;
     protected static readonly float DEFAULT_DAMAGE = 10f;
 
+
     // Use this for initialization
     protected override void Start()
     {
-		WidthOrtho = Camera.main.orthographicSize * ((float)Screen.width / (float)Screen.height);
         this.Speed = DEFAULT_SPEED;
         this.Damage = DEFAULT_DAMAGE;
     }
@@ -30,12 +30,15 @@ public class EnhancedBullet : Bullet
 
         pos += transform.rotation * newPos;
         transform.position = pos;
-        
+
+		float screenRatio = (float)Screen.width / (float)Screen.height;
+        float widthOrtho = Camera.main.orthographicSize * screenRatio;
+
         //destroy if it reaches the borders or if the timer rings
         if (pos.y > Camera.main.orthographicSize
             || pos.y < -Camera.main.orthographicSize
-            || pos.x > WidthOrtho
-            || pos.x < -WidthOrtho)
+            || pos.x > widthOrtho
+            || pos.x < -widthOrtho)
         {
             Destroy(gameObject);
         }
@@ -43,6 +46,7 @@ public class EnhancedBullet : Bullet
 
 	protected override void OnTriggerEnter2D(Collider2D collision)
     {
+		if (collision.CompareTag("Shield")) Destroy(gameObject);
 
 		ShipLifeHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipLifeHandler>();
         if (shipCollidedWithHandler != null)
