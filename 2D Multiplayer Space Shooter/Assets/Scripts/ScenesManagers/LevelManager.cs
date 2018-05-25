@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public class LevelManager : MonoBehaviour {
 
-    public void loadGame()
+	static LevelManager _instance = null;
+
+
+	private void Awake()
+    {
+        if (_instance != null) { Destroy(gameObject); }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }   
+
+    public void LoadScene(string name)
 	{
-		SceneManager.LoadScene("GamePlay");
+		SceneManager.LoadScene(name);
 	}
 
-	public void quit()
+	public void Quit()
 	{
 		#if UNITY_EDITOR
         // Application.Quit() does not work in the editor so
