@@ -8,7 +8,6 @@ public abstract class Bullet : MonoBehaviour {
 
 	private float _speed;
     private float _damage;
-	private float _widthOrtho; // this will be initialized at the beginning ( void Start() ) to have the ortho width of the screen
 
 	public float Speed
     {
@@ -20,12 +19,6 @@ public abstract class Bullet : MonoBehaviour {
     {
 		get { return this._damage; }
 		set { this._damage = value; }
-    }
-
-    public float WidthOrtho
-    {
-		get { return this._widthOrtho; }
-		set { this._widthOrtho = value; }
     }
 
 	// Use this for initialization

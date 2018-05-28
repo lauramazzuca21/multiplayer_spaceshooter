@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ShieldHandler : MonoBehaviour
 {
 	[SerializeField]
-    private GameObject _shieldPrefab;
-	private GameObject _instantiatedShield;
+	private GameObject _shieldPrefab;
+	//private Ship _owner;
+    
+	//private void Start()
+	//{
+	//	_owner = gameObject.GetComponentInParent<Ship>();
+	//}
 
-	protected void GenerateShield()
+	//private void Update()
+	//{
+	//	if (_owner.ShieldsStatus && !_shieldPrefab.activeSelf) ActivateShield();
+	//	else DeactivateShield();
+	//}
+    
+	public void ActivateShield()
 	{
-		_instantiatedShield = Instantiate(_shieldPrefab);
+		_shieldPrefab.SetActive(true);
 	}
-
-	protected void EliminateShield()
+   
+	public void DeactivateShield()
     {
-		Destroy(_instantiatedShield);
+		_shieldPrefab.SetActive(false);
     }
 }

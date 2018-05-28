@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114173902043710952}
   m_Layer: 13
   m_Name: PowerUp_SpeedBoostPrefab
-  m_TagString: PowerUp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

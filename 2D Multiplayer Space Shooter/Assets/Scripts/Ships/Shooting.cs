@@ -10,9 +10,14 @@ public class Shooting : MonoBehaviour {
 	private GameObject _bulletPrefab;
 	[SerializeField]
 	private GameObject _enhancedBulletPrefab;
+	[SerializeField]
+	private AudioClip _bulletSound;
+	[SerializeField]
+	private AudioClip _enhancedBulletSound;
 
 	private Ship _owner;   
-	private Bullet bullet;
+	private GameObject bullet;
+	private Bullet bulletFunctions;
 
 	private float _cooldownTimer;
  
@@ -42,22 +47,31 @@ public class Shooting : MonoBehaviour {
 		_cooldownTimer -= Time.deltaTime;
 
 		if (Input.GetButton("Fire1") && _cooldownTimer <= 0) {
-
+			_cooldownTimer = DEFAULT_FIREDELAY;
 			if (_owner.EnhancedShotStatus)
 			{
-				_cooldownTimer = DEFAULT_FIREDELAY;
-				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
-				bullet.Damage = (bullet.Damage + EnhancedShotDamage) * _owner.DamageDealtModifier;
-                bullet.Speed += EnhancedShotSpeed;
+				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation);
+				bullet.layer = gameObject.layer;
+
+				bulletFunctions = bullet.GetComponent<Bullet>();            
+				//modifier so that the bullet damages the enemies its default value times the owner ship modifier
+				bulletFunctions.Damage = (bulletFunctions.Damage + EnhancedShotDamage) * _owner.DamageDealtModifier;
+				bulletFunctions.Speed += EnhancedShotSpeed;
+				AudioSource.PlayClipAtPoint(_enhancedBulletSound, transform.position);
+
 				_owner.EnhancedShotStatus = false;
 
 			} 
 			else 
 			{
-				_cooldownTimer = DEFAULT_FIREDELAY;
+				bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation);
+				bullet.layer = gameObject.layer;
+                
+                bulletFunctions = bullet.GetComponent<Bullet>();
+				//modifier so that the bullet damages the enemies its default value times the owner ship modifier
+				bulletFunctions.Damage = bulletFunctions.Damage * _owner.DamageDealtModifier;
 
-				bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
-				bullet.Damage = bullet.Damage * _owner.DamageDealtModifier;
+				AudioSource.PlayClipAtPoint(_bulletSound, transform.position);
 			}
 
 		}

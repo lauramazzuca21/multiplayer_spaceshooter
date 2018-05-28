@@ -14,24 +14,16 @@ public abstract class Ship : MonoBehaviour {
 	private float _rotSpeed; //speed we can turn in 1 sec
 	private float _shipBoundaryRadius; //radius of the ship to not go over the screen limits
 
+	[SerializeField]
 	private float _health;
 	//modifier for each ship that will be passed to Shooting and then Bullet to make the damage dealt balanced.
     // The modifier is supposed to be a percentage so it must in the [0.0, 1.0] range.
-	private float _damageDealtModifier; 
+	private float _damageDealtModifier;
 
     //bools for powerup activation tracking
 	private bool _speedBoost = false;
     private bool _shields = false;
     private bool _enhancedShot = false;
-
-	[SerializeField]
-	private GameObject destroyedAnimation;
-
-    public GameObject DestroyedAnimation
-    {
-        get { return this.destroyedAnimation; }
-        set { this.destroyedAnimation = value; }
-    }
 
 	public float MaxSpeed
     {
