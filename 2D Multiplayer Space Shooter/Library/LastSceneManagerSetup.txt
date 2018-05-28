@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/PC_Game/Setup.unity
+- path: Assets/Scenes/Smartphone_Controller/02_Controller.unity
   isLoaded: 1
   isActive: 1
