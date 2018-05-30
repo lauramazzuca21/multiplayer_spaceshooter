@@ -12,7 +12,7 @@ public class PowerUpController : MonoBehaviour
 
 	private float yBoundaries;
 	private float xBoundaries;
-	private float SPAWN_TIMER_VALUE = 2f;
+	private float SPAWN_TIMER_VALUE = 5f;
 	private float timer;
 	private Vector3 randomSpawn;
 
@@ -26,7 +26,7 @@ public class PowerUpController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		timer = 0;
+		timer = SPAWN_TIMER_VALUE;
 		randomSpawn = new Vector3(0, 0, 0);
     } 
 
@@ -47,13 +47,11 @@ public class PowerUpController : MonoBehaviour
 			{
 				//case ENHANCED_SHOT:
 				case 0:
-					//Instantiate(_enhancedShotPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
-					Instantiate(_shieldPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
+					Instantiate(_enhancedShotPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
 					break;
 				//case SPEED_BOOST:
 				case 1:
-					//Instantiate(_speedBoostPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
-					Instantiate(_shieldPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
+					Instantiate(_speedBoostPrefab, randomSpawn, new Quaternion(0, 0, 0, 0));
 					break;
 				//case SHIELD:
 				case 2:
