@@ -16,23 +16,28 @@ public class StrongShip : Ship
 	private static readonly float HEALTH = 20f;
 	private static readonly float DAMAGE_DEALT_MODIFIER = 1f;
 
-    //component to call Shooting methods
-	private Shooting _shooting;
-	private ShieldHandler _shieldHandler;
+	//components to call methods in Handlers
+    private ShieldHandler _shieldHandler;
+    private ShipLifeHandler _lifeHandler;
+    private ShootHandler _shootHandler;
+	private PowerupHandler _powerupHandler;
 
 
-	// Use this for initialization
-	override protected void Start()
+
+    override protected void Start()
     {
+        _shootHandler = gameObject.GetComponentInChildren<ShootHandler>();
+        _shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
+        _lifeHandler = gameObject.GetComponent<ShipLifeHandler>();
+		_powerupHandler = gameObject.GetComponent<PowerupHandler>();
+
         MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
         RotSpeed = ROT_SPEED; //speed we can turn in 1 sec
         ShipBoundaryRadius = BOUNDARY_RADIUS;
 
-        Health = HEALTH;
-        DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
+        _lifeHandler.Health = HEALTH;
+        _shootHandler.DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
 
-		_shooting = gameObject.GetComponentInChildren<Shooting>();
-		_shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
     }
 
     // Update is called once per frame
@@ -73,18 +78,24 @@ public class StrongShip : Ship
 
 	public override void EnhancedShotOn(float shotDamage, float shotSpeed)
     {
-		EnhancedShotStatus = true;
-        //changes the attributes of Shooting. 
-		//Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
-		_shooting.EnhancedShotDamage = shotDamage;
-		_shooting.EnhancedShotSpeed = shotSpeed;
+		if (!EnhancedShotStatus)
+		{
+			EnhancedShotStatus = true;
+			//changes the attributes of Shooting. 
+			//Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
+			_shootHandler.EnhancedShotDamage = shotDamage;
+			_shootHandler.EnhancedShotSpeed = shotSpeed;
+		}
 	}
 
     public override void ShieldsOn()
     {
-		ShieldsStatus = true;
-		_shieldHandler.ActivateShield();
-        StartCoroutine(this.ShieldsPowerDown());    
+		if (!ShieldsStatus)
+		{
+			ShieldsStatus = true;
+			_shieldHandler.ActivateShield();
+			StartCoroutine(this.ShieldsPowerDown());
+		}
 	}
 
 	protected IEnumerator ShieldsPowerDown()
@@ -97,22 +108,10 @@ public class StrongShip : Ship
     
 	public override void SpeedBoostOn(float speedMultiplyer)
     {
-		SpeedBoostStatus = true;
-        // Changes the speed at which the ship moves linearly
-		MaxSpeed = MaxSpeed * speedMultiplyer;
-        //start the automatic power down coroutine
-		StartCoroutine(this.SpeedBoostPowerDown());
+		
 
 	}
 
-    //IEnumeraator grants the possibility to wait inactively for a certain amount of time
-    // and then continues to execute the code ater the yield call.
-	protected IEnumerator SpeedBoostPowerDown()
-    {
-        yield return new WaitForSeconds(3.0f);
-		SpeedBoostStatus = false;
-		MaxSpeed = MAX_SPEED;
-
-    }
+    
    
 }

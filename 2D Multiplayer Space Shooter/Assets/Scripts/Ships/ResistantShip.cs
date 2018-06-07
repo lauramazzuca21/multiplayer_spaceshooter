@@ -14,23 +14,24 @@ public class ResistantShip : Ship
 	private static readonly float HEALTH = 30f;
 	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
 
-    //component to call Shooting methods
-    private Shooting _shooting;
+	//components to call methods in Handlers
 	private ShieldHandler _shieldHandler;
+    private ShipLifeHandler _lifeHandler;
+    private ShootHandler _shootHandler;
 
-    // Use this for initialization
+
     override protected void Start()
     {
-		MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
+        _shootHandler = gameObject.GetComponentInChildren<ShootHandler>();
+        _shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
+        _lifeHandler = gameObject.GetComponent<ShipLifeHandler>();
+
+        MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
         RotSpeed = ROT_SPEED; //speed we can turn in 1 sec
-        ShipBoundaryRadius = BOUNDARY_RADIUS; 
+        ShipBoundaryRadius = BOUNDARY_RADIUS;
 
-        Health = HEALTH;
-		DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
-
-		_shooting = gameObject.GetComponentInChildren<Shooting>();
-		_shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
-
+        _lifeHandler.Health = HEALTH;
+        _shootHandler.DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
 
     }
 

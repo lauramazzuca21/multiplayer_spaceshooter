@@ -27,12 +27,12 @@ public class EnhancedShot : PowerUp
     override protected void OnTriggerEnter2D(Collider2D collision)
     {
         Ship shipCollided = collision.GetComponent<Ship>();
+		PowerupHandler handler = shipCollided.GetComponent<PowerupHandler>();
 
 
-        if (shipCollided != null)
+		if (shipCollided != null && handler != null)
         {
-			Debug.Log("Ship Collided, shoud destroy object");
-			shipCollided.EnhancedShotOn(SHOT_DAMAGE, SHOT_SPEED);
+			handler.EnhancedShotOn(SHOT_DAMAGE, SHOT_SPEED);
             this.DestroyPowerUp();
         }
 

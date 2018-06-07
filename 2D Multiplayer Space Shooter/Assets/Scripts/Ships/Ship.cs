@@ -14,16 +14,6 @@ public abstract class Ship : MonoBehaviour {
 	private float _rotSpeed; //speed we can turn in 1 sec
 	private float _shipBoundaryRadius; //radius of the ship to not go over the screen limits
 
-	[SerializeField]
-	private float _health;
-	//modifier for each ship that will be passed to Shooting and then Bullet to make the damage dealt balanced.
-    // The modifier is supposed to be a percentage so it must in the [0.0, 1.0] range.
-	private float _damageDealtModifier;
-
-    //bools for powerup activation tracking
-	private bool _speedBoost = false;
-    private bool _shields = false;
-    private bool _enhancedShot = false;
 
 	public float MaxSpeed
     {
@@ -43,36 +33,7 @@ public abstract class Ship : MonoBehaviour {
 		set { this._shipBoundaryRadius = value; }
     }
 
-	public float Health
-    {
-        get { return this._health; }
-        set { this._health = value; }
-    }
-
-	public float DamageDealtModifier
-    {
-		get { return this._damageDealtModifier; }
-		set { this._damageDealtModifier = value; }
-    }
-
-	public bool SpeedBoostStatus
-    {
-		get { return this._speedBoost; }
-		set { this._speedBoost = value; }
-    }
-
-	public bool ShieldsStatus
-    {
-        get { return this._shields; }
-        set { this._shields = value; }
-    }
-
-	public bool EnhancedShotStatus
-    {
-		get { return this._enhancedShot; }
-		set { this._enhancedShot = value; }
-    }
-
+   
 	// Use this for initialization
 	protected abstract void Start();
 
@@ -113,12 +74,6 @@ public abstract class Ship : MonoBehaviour {
 		return pos;
 	}
      
-	// ****   PowerUps handlers   **** \\
-	//these public classes will be directly called by the respective PoweUps once they collide with a ship
-	public abstract void EnhancedShotOn(float shotDamage, float shotSpeed);
 
-	public abstract void ShieldsOn();
-
-	public abstract void SpeedBoostOn(float speedMultiplyer);
    
 }
