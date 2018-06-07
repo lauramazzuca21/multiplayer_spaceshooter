@@ -1,16 +1,21 @@
 ﻿<Properties StartupConfiguration="{A5768794-FD75-F899-040A-BE791940DC3B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ships/Handlers/ShieldHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ships/ShipsManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Ships/ShipsManager.cs" Line="19" Column="35" />
+      <File FileName="Assets/Scripts/Ships/ShipsManager.cs" Line="26" Column="13" />
       <File FileName="Assets/SetupManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DefaultBullet.cs" Line="62" Column="3" />
+      <File FileName="Assets/Scripts/DefaultBullet.cs" Line="46" Column="25" />
       <File FileName="Assets/Scripts/Ships/FastShip.cs" Line="19" Column="20" />
       <File FileName="Assets/Scripts/Ships/ResistantShip.cs" Line="36" Column="6" />
-      <File FileName="Assets/Scripts/Ships/StrongShip.cs" Line="106" Column="2" />
-      <File FileName="Assets/Scripts/Ships/Handlers/PowerupHandler.cs" Line="60" Column="10" />
-      <File FileName="Assets/Scripts/Ships/Handlers/ShieldHandler.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/Ships/StrongShip.cs" Line="76" Column="96" />
+      <File FileName="Assets/Scripts/Ships/Handlers/PowerupHandler.cs" Line="63" Column="51" />
+      <File FileName="Assets/Scripts/Ships/Handlers/ShootHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FixedJoystick.cs" Line="4" Column="33" />
+      <File FileName="Assets/Scripts/Joystick.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Ships/Ship.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/PowerUps/PowerUpManager.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/ServerConnectionManager.cs" Line="10" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
