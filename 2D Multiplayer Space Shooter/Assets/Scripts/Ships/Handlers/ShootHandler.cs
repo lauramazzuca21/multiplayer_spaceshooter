@@ -17,6 +17,7 @@ public class ShootHandler : MonoBehaviour {
 
 	private GameObject bullet;
 	private Bullet bulletFunctions;
+	private PowerupHandler _powerupHandler;
 
 	private float _cooldownTimer;
 	private float _damageDealtModifier;
@@ -45,6 +46,7 @@ public class ShootHandler : MonoBehaviour {
 	// Use this for initialization
 	private void Start () {
 		_cooldownTimer = DEFAULT_FIREDELAY;
+		_powerupHandler = GetComponentInParent<PowerupHandler>();
 	}
 
 	// Update is called once per frame
@@ -53,18 +55,19 @@ public class ShootHandler : MonoBehaviour {
 
 		if (Input.GetButton("Fire1") && _cooldownTimer <= 0) {
 			_cooldownTimer = DEFAULT_FIREDELAY;
-			if (_owner.EnhancedShotStatus)
+			if (_powerupHandler.EnhancedShotStatus)
 			{
 				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation);
 				bullet.layer = gameObject.layer;
 
 				bulletFunctions = bullet.GetComponent<Bullet>();            
 				//modifier so that the bullet damages the enemies its default value times the owner ship modifier
-				bulletFunctions.Damage = (bulletFunctions.Damage + EnhancedShotDamage) * _owner.DamageDealtModifier;
+
+				bulletFunctions.Damage = (bulletFunctions.Damage + EnhancedShotDamage) * _damageDealtModifier;
 				bulletFunctions.Speed += EnhancedShotSpeed;
 				AudioSource.PlayClipAtPoint(_enhancedBulletSound, transform.position);
 
-				_owner.EnhancedShotStatus = false;
+				_powerupHandler.EnhancedShotStatus = false;
 
 			} 
 			else 
@@ -73,9 +76,10 @@ public class ShootHandler : MonoBehaviour {
 				bullet.layer = gameObject.layer;
                 
                 bulletFunctions = bullet.GetComponent<Bullet>();
-				//modifier so that the bullet damages the enemies its default value times the owner ship modifier
-				bulletFunctions.Damage = bulletFunctions.Damage * _owner.DamageDealtModifier;
+				//modifier so that the bullet damages the enemies its default value times the owner ship modifier\
 
+				bulletFunctions.Damage = bulletFunctions.Damage * _damageDealtModifier;
+            
 				AudioSource.PlayClipAtPoint(_bulletSound, transform.position);
 			}
 

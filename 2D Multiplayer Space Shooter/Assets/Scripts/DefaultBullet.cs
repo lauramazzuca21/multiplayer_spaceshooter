@@ -51,9 +51,6 @@ public class DefaultBullet : Bullet
         if (shipCollidedWithHandler != null)
         {
 			shipCollidedWithHandler.takeDamage(Damage);
-			if (shipCollidedWithHandler.isDead()) {
-				notifyDeath();
-			}
             Destroy(gameObject);
         }
     }

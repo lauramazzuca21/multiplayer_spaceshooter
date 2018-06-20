@@ -9,34 +9,29 @@ using System.Collections;
 
 public class StrongShip : Ship
 {
+    
+	public const float MAX_SPEED = 5f;
+	public const float ROT_SPEED = 150f;
+	public const float DAMAGE_DEALT_MODIFIER = 1f;
+	public const float HEALTH = 20f;
 
-	private static readonly float MAX_SPEED = 5f;
-	private static readonly float ROT_SPEED = 150f;
-	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly float HEALTH = 20f;
-	private static readonly float DAMAGE_DEALT_MODIFIER = 1f;
+	private const float BOUNDARY_RADIUS = 0.5f;
 
 	//components to call methods in Handlers
-    private ShieldHandler _shieldHandler;
     private ShipLifeHandler _lifeHandler;
     private ShootHandler _shootHandler;
-	private PowerupHandler _powerupHandler;
-
-
 
     override protected void Start()
     {
         _shootHandler = gameObject.GetComponentInChildren<ShootHandler>();
-        _shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
         _lifeHandler = gameObject.GetComponent<ShipLifeHandler>();
-		_powerupHandler = gameObject.GetComponent<PowerupHandler>();
 
         MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
         RotSpeed = ROT_SPEED; //speed we can turn in 1 sec
         ShipBoundaryRadius = BOUNDARY_RADIUS;
 
-        _lifeHandler.Health = HEALTH;
         _shootHandler.DamageDealtModifier = DAMAGE_DEALT_MODIFIER;
+		ResetHealth();
 
     }
 
@@ -74,44 +69,11 @@ public class StrongShip : Ship
 
         //also valid, unless u wanna do stuff in betweed :
 		//transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
-    }
-
-	public override void EnhancedShotOn(float shotDamage, float shotSpeed)
-    {
-		if (!EnhancedShotStatus)
-		{
-			EnhancedShotStatus = true;
-			//changes the attributes of Shooting. 
-			//Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
-			_shootHandler.EnhancedShotDamage = shotDamage;
-			_shootHandler.EnhancedShotSpeed = shotSpeed;
-		}
-	}
-
-    public override void ShieldsOn()
-    {
-		if (!ShieldsStatus)
-		{
-			ShieldsStatus = true;
-			_shieldHandler.ActivateShield();
-			StartCoroutine(this.ShieldsPowerDown());
-		}
-	}
-
-	protected IEnumerator ShieldsPowerDown()
-    {
-		yield return new WaitForSeconds(150.0f);
-		_shieldHandler.DeactivateShield();
-		ShieldsStatus = false;
-
-    }
+    }   
     
-	public override void SpeedBoostOn(float speedMultiplyer)
+	protected void ResetHealth()
     {
-		
-
-	}
-
-    
+		_lifeHandler.Health = HEALTH;
+    }
    
 }

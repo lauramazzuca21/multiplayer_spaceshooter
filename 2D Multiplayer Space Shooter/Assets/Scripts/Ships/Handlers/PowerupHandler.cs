@@ -11,6 +11,10 @@ public class PowerupHandler : MonoBehaviour
     private bool _shields = false;
     private bool _enhancedShot = false;
 
+	private ShootHandler _shootHandler;
+	private Ship ship;
+	private string shipName;
+
 	public bool SpeedBoostStatus
     {
         get { return this._speedBoost; }
@@ -32,26 +36,31 @@ public class PowerupHandler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		_shootHandler = GetComponentInParent<ShootHandler>();
+		ship = GetComponentInParent<Ship>();
+		shipName = ship.name;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
 	// ****   PowerUps handlers   **** \\
     //these public classes will be directly called by the respective PoweUps once they collide with a ship
     public void EnhancedShotOn(float shotDamage, float shotSpeed)
 	{
-		
+		if (!EnhancedShotStatus)
+        {
+            EnhancedShotStatus = true;
+            //changes the attributes of Shooting. 
+            //Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
+			_shootHandler.EnhancedShotDamage = shotDamage;
+			_shootHandler.EnhancedShotSpeed = shotSpeed;
+            
+        }
 	}
 
     public void ShieldsOn()
 	{
-
-		ActivateShield();
+		if (!ShieldsStatus) ActivateShield();
 	}
 
 	public void SpeedBoostOn(float speedMultiplyer)
@@ -60,7 +69,9 @@ public class PowerupHandler : MonoBehaviour
         {
             SpeedBoostStatus = true;
             // Changes the speed at which the ship moves linearly
-            MaxSpeed = MaxSpeed * speedMultiplyer;
+			ship.MaxSpeed *= speedMultiplyer;
+			ship.RotSpeed *= speedMultiplyer;
+
             //start the automatic power down coroutine
             StartCoroutine(this.SpeedBoostPowerDown());
         }
@@ -72,8 +83,27 @@ public class PowerupHandler : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         SpeedBoostStatus = false;
 
+		switch (name)
+		{
+			case "StrongShip_Prefab":
+				ship.MaxSpeed = StrongShip.MAX_SPEED;
+				ship.RotSpeed = StrongShip.ROT_SPEED;
+				break;
+			case "FastShip_Prefab":
+				ship.MaxSpeed = FastShip.MAX_SPEED;
+                ship.RotSpeed = FastShip.ROT_SPEED;
+                break;
+			case "ResistantShip_Prefab":
+                ship.MaxSpeed = ResistantShip.MAX_SPEED;
+                ship.RotSpeed = ResistantShip.ROT_SPEED;
+                break;
+			default:
+				Debug.Log("Shouldn't get here");
+				break;
+		}
+        
     }
-
+    
 	private void ActivateShield()
     {
         _shieldPrefab.SetActive(true);

@@ -17,9 +17,7 @@ public class ShipLifeHandler : MonoBehaviour
 	private float _invulnTimer = 0;
 	private bool _isDead = false;
 	private float _health;
-
-	private Ship _owner;
-
+   
 	private Animator _deathAnimation;
 
 
@@ -33,9 +31,9 @@ public class ShipLifeHandler : MonoBehaviour
 	private void Start()
 	{
 		_correctLayer = gameObject.layer;
-		_owner = gameObject.GetComponent<Ship>();
 
 		_deathAnimation = GetComponent<Animator>();
+        
 	}
 
 
@@ -65,6 +63,7 @@ public class ShipLifeHandler : MonoBehaviour
 	{
 		_isDead = true;
 		gameObject.SetActive(false);
+
 	}
 
    

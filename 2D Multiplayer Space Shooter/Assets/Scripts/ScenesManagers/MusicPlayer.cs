@@ -15,15 +15,10 @@ public class MusicPlayer : MonoBehaviour
 			DontDestroyOnLoad(gameObject); 
 		}
 	}
-	// Use this for initialization
-	void Start()
-    {
-		
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public static void ChangeMusicValue(float value)
+	{
+		AudioSource audio = _instance.GetComponent<AudioSource>();
+        audio.volume = value;
+	}
 }

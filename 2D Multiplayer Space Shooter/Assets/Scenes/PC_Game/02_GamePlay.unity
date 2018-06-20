@@ -601,28 +601,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189171140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883cdc4be2877482aaef8c325122c1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 97c8a3ae8430b43b0a5e3f2b0528e080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FastShipSprites:
-  - {fileID: 21300000, guid: 6671ef12e17f4408f9e2530c0131cf23, type: 3}
-  - {fileID: 21300000, guid: bae515750ed154dcfa3c4d2c8448af35, type: 3}
-  - {fileID: 21300000, guid: fa3172072126542c4a2f4236bf7c29bc, type: 3}
-  - {fileID: 21300000, guid: d6e050224547d41afb82b4d486bbeb1f, type: 3}
-  ResistantShipSprites:
-  - {fileID: 21300000, guid: f68fed9b4bf404357a83e6c5ead7e759, type: 3}
-  - {fileID: 21300000, guid: cb7e5440e393444f8971f295798c8624, type: 3}
-  - {fileID: 21300000, guid: f968b15b150d04c4fb3810ed48c5b817, type: 3}
-  - {fileID: 21300000, guid: 6e4af5667b8cd46cc83e53e5bfa933f9, type: 3}
-  StrongShipSprites:
-  - {fileID: 21300000, guid: 029a4221dcd4e4685bb543213bd1393c, type: 3}
-  - {fileID: 21300000, guid: 00aaa58be8c5a4f38aa3c6a07ab0ce68, type: 3}
-  - {fileID: 21300000, guid: 6f34b2a1498f849dbb18e95f662f785e, type: 3}
-  - {fileID: 21300000, guid: e0e53e8a516144ea7b9f70cc05527660, type: 3}
-  shipsPrefabs:
-  - {fileID: 1437415339161086, guid: 549367392730149c8a1b2ceb87d33cac, type: 2}
-  - {fileID: 1889858434701042, guid: 58abbe11d40aa4d789fc1a981a892f73, type: 2}
-  - {fileID: 1418556722742360, guid: 38d3838ecb7af4293b0795c25a1edc5a, type: 2}
 --- !u!1 &1301812146
 GameObject:
   m_ObjectHideFlags: 0

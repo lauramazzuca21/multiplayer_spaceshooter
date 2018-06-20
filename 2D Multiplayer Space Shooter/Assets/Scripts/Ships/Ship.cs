@@ -9,11 +9,9 @@ using UnityEngine;
 public abstract class Ship : MonoBehaviour {
 
         
-	[SerializeField] //field right under the declaration will be visible in unity
-	private float _maxSpeed; //speed we can reach in 1 sec
+    private float _maxSpeed; //speed we can reach in 1 sec
 	private float _rotSpeed; //speed we can turn in 1 sec
 	private float _shipBoundaryRadius; //radius of the ship to not go over the screen limits
-
 
 	public float MaxSpeed
     {

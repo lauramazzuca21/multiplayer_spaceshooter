@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4427305607078450}
   - component: {fileID: 212929559610682440}
   - component: {fileID: 50469206435590862}
-  - component: {fileID: 114455182169573806}
   - component: {fileID: 60954284054999368}
   m_Layer: 9
   m_Name: ShieldPrefab
@@ -38,6 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4680213628073276}
+  - component: {fileID: 114068937005902924}
   m_Layer: 9
   m_Name: ShieldSpotDefault
   m_TagString: Untagged
@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114428761604657704}
   - component: {fileID: 60447698056993500}
   - component: {fileID: 50706091103317168}
+  - component: {fileID: 114400104382350026}
   m_Layer: 9
   m_Name: ResistantShip_Prefab
   m_TagString: Untagged
@@ -261,6 +262,18 @@ PolygonCollider2D:
       - {x: 0.6258063, y: -0.1924826}
       - {x: 0.5492775, y: -0.5235963}
       - {x: 0.6612527, y: -0.27450466}
+--- !u!114 &114068937005902924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847340539073824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2430ddf517d64995a545f9fabee6c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shieldPrefab: {fileID: 0}
 --- !u!114 &114088745751832214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,7 +282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1918567539496006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe909bcf973d4217a67cafcc42e5e5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 97bb349ceadd74f5ebe047a08cbdc4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 1053796330387738, guid: 71382e06d99724ebf947d91dd3b4889f,
@@ -278,6 +291,18 @@ MonoBehaviour:
     type: 2}
   _bulletSound: {fileID: 0}
   _enhancedBulletSound: {fileID: 0}
+--- !u!114 &114400104382350026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889858434701042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011fed3877f6e46c1af7697b5b5ec1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _correctLayer: 0
 --- !u!114 &114428761604657704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,20 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71c6156ed5cc47d38b32f9637c84bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 0
-  _health: 0
---- !u!114 &114455182169573806
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1647337133111202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6493b071e3f004531affd121c90d6736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shieldPrefab: {fileID: 0}
 --- !u!212 &212241622582900410
 SpriteRenderer:
   m_ObjectHideFlags: 1

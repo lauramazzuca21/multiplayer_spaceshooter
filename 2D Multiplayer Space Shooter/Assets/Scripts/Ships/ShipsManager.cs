@@ -23,7 +23,7 @@ public class ShipsController : MonoBehaviour
 		foreach (Transform child in transform) {
 			GameObject ship = Instantiate(shipsPrefabs[(int) Ships.FAST], child);
 			SpriteRenderer spriteRenderer = ship.GetComponent<SpriteRenderer>();
-            
+
 			spriteRenderer.sprite = FastShipSprites[(int) Colours.BLUE];
 			ship.transform.parent = child;
 		}

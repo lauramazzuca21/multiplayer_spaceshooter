@@ -8,14 +8,14 @@ using System.Collections;
 public class ResistantShip : Ship
 {
 
-	private static readonly float MAX_SPEED = 3f;
-	private static readonly float ROT_SPEED = 110f;
-	private static readonly float BOUNDARY_RADIUS = 0.5f;
-	private static readonly float HEALTH = 30f;
-	private static readonly float DAMAGE_DEALT_MODIFIER = 0.5f;
+	public const float MAX_SPEED = 3f;
+	public const float ROT_SPEED = 110f;
+	public const float DAMAGE_DEALT_MODIFIER = 0.5f;
+	public const float HEALTH = 20f;
+
+	private const float BOUNDARY_RADIUS = 0.5f;
 
 	//components to call methods in Handlers
-	private ShieldHandler _shieldHandler;
     private ShipLifeHandler _lifeHandler;
     private ShootHandler _shootHandler;
 
@@ -23,7 +23,6 @@ public class ResistantShip : Ship
     override protected void Start()
     {
         _shootHandler = gameObject.GetComponentInChildren<ShootHandler>();
-        _shieldHandler = gameObject.GetComponentInChildren<ShieldHandler>();
         _lifeHandler = gameObject.GetComponent<ShipLifeHandler>();
 
         MaxSpeed = MAX_SPEED; //speed we can reach in 1 sec
@@ -69,49 +68,6 @@ public class ResistantShip : Ship
         //also valid, unless u wanna do stuff in betweed :
         //transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
-
-    public override void EnhancedShotOn(float shotDamage, float shotSpeed)
-    {
-        EnhancedShotStatus = true;
-        //changes the attributes of Shooting. 
-        //Power down handled by Shooting after one EnhancedShot is shot setting false EnhancedShotStatus.
-        _shooting.EnhancedShotDamage = shotDamage;
-        _shooting.EnhancedShotSpeed = shotSpeed;
-    }
-
-	public override void ShieldsOn()
-    {
-        ShieldsStatus = true;
-        _shieldHandler.ActivateShield();
-        StartCoroutine(this.ShieldsPowerDown());
-    }
-
-    protected IEnumerator ShieldsPowerDown()
-    {
-        yield return new WaitForSeconds(150.0f);
-        _shieldHandler.DeactivateShield();
-        ShieldsStatus = false;
-
-    }
-
-    public override void SpeedBoostOn(float speedMultiplyer)
-    {
-        SpeedBoostStatus = true;
-        // Changes the speed at which the ship moves linearly
-        MaxSpeed = MaxSpeed * speedMultiplyer;
-        //start the automatic power down coroutine
-        StartCoroutine(this.SpeedBoostPowerDown());
-
-    }   
-
-    //IEnumeraator grants the possibility to wait inactively for a certain amount of time
-    // and then continues to execute the code ater the yield call.
-    protected IEnumerator SpeedBoostPowerDown()
-    {
-        yield return new WaitForSeconds(3.0f);
-        SpeedBoostStatus = false;
-        MaxSpeed = MAX_SPEED;
-
-    }
+   
 
 }
