@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class ShipLifeHandler : MonoBehaviour 
 {
-
     //in physics 2D Invulnerable layer is set to not collide with anything
 	private static readonly int INVULN_LAYER = 12;
 	private static readonly float INVULN_TIMER = 0.5f;
@@ -22,13 +21,8 @@ public class ShipLifeHandler : MonoBehaviour
 
 	private Animator _deathAnimation;
 
+    private ScoreManager _scoremanager; //per notify Death
 
-	public float Health
-    {
-		get { return this._health; }
-		set { this._health = value; }
-    }
-   
 
 	private void Start()
 	{
@@ -51,21 +45,37 @@ public class ShipLifeHandler : MonoBehaviour
 		}
 	}
 
-
-    public void takeDamage(float damageTaken)
-    {
-		Health -= damageTaken;
-        gameObject.layer = INVULN_LAYER;
-        _invulnTimer = INVULN_TIMER;
-  
-    }
-
-
 	public void Die() 
 	{
 		_isDead = true;
 		gameObject.SetActive(false);
 	}
 
-   
+    //metodi su modello di dominio:
+     
+    public float Health
+    {
+        get { return this._health; }
+        set { this._health = value; }
+    }
+
+
+    public void takeDamage(float damageTaken)
+    {
+        Health -= damageTaken;
+        gameObject.layer = INVULN_LAYER;
+        _invulnTimer = INVULN_TIMER;
+
+    }
+
+    public void notifyDeath()
+    {
+         //dice allo score manager che è morto e di aggiornare lo score
+    }
+
+    public Boolean GetIsDead()
+    {
+        return _isDead;
+    }
+
 }
