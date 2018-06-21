@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Smartphone_Controller/01_ChooseShip.unity
+- path: Assets/Scenes/PC_Game/02_GamePlay.unity
   isLoaded: 1
   isActive: 1

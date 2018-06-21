@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 638317817}
   - component: {fileID: 638317816}
   m_Layer: 0
-  m_Name: PowerUpController
+  m_Name: PowerUpManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,15 +368,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 638317815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afc84fdf4f63f4aabbae2aebf733becb, type: 3}
+  m_Script: {fileID: 11500000, guid: 53769a3d9af9441e784f4bc37de4a9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedBoostPrefab: {fileID: 1758134670059916, guid: ce521f1531f43461cb5e0768f958558a,
-    type: 2}
-  _enhancedShotPrefab: {fileID: 1621836837388968, guid: 97993e289d6d54529af07de13982c97a,
-    type: 2}
-  _shieldPrefab: {fileID: 1593671439143104, guid: 2b05683735662464d80c9e406daa11a2,
-    type: 2}
 --- !u!4 &638317817
 Transform:
   m_ObjectHideFlags: 0
@@ -570,7 +564,7 @@ GameObject:
   - component: {fileID: 1189171141}
   - component: {fileID: 1189171142}
   m_Layer: 0
-  m_Name: ShipsController
+  m_Name: ShipsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

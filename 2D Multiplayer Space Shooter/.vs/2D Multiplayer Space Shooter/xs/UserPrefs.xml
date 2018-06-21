@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DefaultBullet.cs">
     <Files>
-      <File FileName="Assets/Scripts/Ships/ShipsManager.cs" Line="35" Column="3" />
+      <File FileName="Assets/Scripts/Ships/ShipsManager.cs" Line="17" Column="2" />
       <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DefaultBullet.cs" Line="46" Column="25" />
+      <File FileName="Assets/Scripts/DefaultBullet.cs" Line="53" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
