@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShipsController : MonoBehaviour
+public class ShipsManager : MonoBehaviour
 {
 	private enum Ships { FAST, RESISTANT, STRONG };
 	private enum Colours { BLUE, GREEN, ORANGE, RED };
