@@ -59,6 +59,8 @@ public class ShootHandler : MonoBehaviour {
 			{
 				bullet = Instantiate(_enhancedBulletPrefab, transform.position, transform.rotation);
 				bullet.layer = gameObject.layer;
+              
+
 
 				bulletFunctions = bullet.GetComponent<Bullet>();            
 				//modifier so that the bullet damages the enemies its default value times the owner ship modifier

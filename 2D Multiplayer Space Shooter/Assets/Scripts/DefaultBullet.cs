@@ -5,16 +5,20 @@ public class DefaultBullet : Bullet
 {
 	protected static readonly float DEFAULT_SPEED = 8f;
     protected static readonly float DEFAULT_DAMAGE = 5f;
-   
+    private ScoreManager _scoreManager;
+
+
     // Use this for initialization
-	protected override void Start()
+    protected override void Start()
 	{
 		this.Speed = DEFAULT_SPEED;
 		this.Damage = DEFAULT_DAMAGE;
+        _scoreManager = FindObjectOfType<ScoreManager>();
+
     }
 
     // Update is called once per frame
-	protected override void Update()
+    protected override void Update()
     {
         Movement();
     }
@@ -50,7 +54,13 @@ public class DefaultBullet : Bullet
         ShipLifeHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipLifeHandler>();
         if (shipCollidedWithHandler != null)
         {
-			shipCollidedWithHandler.takeDamage(Damage);
+            shipCollidedWithHandler.takeDamage(Damage);
+
+            if (shipCollidedWithHandler.GetIsDead())
+            {
+                _scoreManager.UpdateScore(gameObject.layer);  
+            }
+
             Destroy(gameObject);
         }
     }

@@ -1,26 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    private int[] _scorePlayer;
 
-    private int _scorePlayer1;
-    private int _scorePlayer2;
-    private int _scorePlayer3;
-    private int _scorePlayer4;
     private int _maxKills;
 
+    [SerializeField]
+	private Text[] _textPlayerScore;
 
-    // Use this for initialization
-    void Start()
+    private LevelManager levelManager;
+
+	void Start()
     {
+        Reset();
+        _scorePlayer = new int[4];
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+			
+	public void UpdateScore(int playerID) //player 0-3 = 1-4
+    {
+        Debug.Log("Scored points");
+        _scorePlayer[playerID]++;
+        _textPlayerScore[playerID].text = _scorePlayer.ToString();
 
+        if (_scorePlayer[playerID] == _maxKills) {
+            levelManager.LoadScene(Constants.GAMEOVER_SCENE);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reset()
     {
-
+        for(int i = 0; i<_scorePlayer.Length; i++)
+        {
+            _scorePlayer[i] = 0;
+            _textPlayerScore[i].text = _scorePlayer.ToString();
+        }
     }
 }
