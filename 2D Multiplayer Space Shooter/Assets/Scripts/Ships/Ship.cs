@@ -44,6 +44,8 @@ public abstract class Ship : MonoBehaviour
 
     protected abstract void Movement();
 
+	public abstract void ResetHealth();
+
     //implemented here because the algorythm must be equal to all ships.
     protected Vector3 BoundariesRestrictions(Vector3 pos)
     {

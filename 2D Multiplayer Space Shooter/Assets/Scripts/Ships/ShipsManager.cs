@@ -34,7 +34,7 @@ public class ShipsManager : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            if (j < activePlayers)
+			if (j < _activePlayers)
             {
 				instantiatedShips[j] = Instantiate(shipsPrefabs[(int) _playersChoices[j]], child);
                 SpriteRenderer spriteRenderer = instantiatedShips[j].GetComponent<SpriteRenderer>();
@@ -56,7 +56,12 @@ public class ShipsManager : MonoBehaviour
 				}
                 
                 instantiatedShips[j].transform.parent = child;
+				instantiatedShips[j].layer = Constants.LAYER_OFFSET + j;
 
+				foreach (Transform shipChild in instantiatedShips[j].GetComponentsInChildren<Transform>(true))
+				{
+					shipChild.gameObject.layer = Constants.LAYER_OFFSET + j;
+				}
 				_isRespawning[j] = false;
             }
 
@@ -68,30 +73,33 @@ public class ShipsManager : MonoBehaviour
     /* IEnumerator grants the possibility to wait inactively 
  * for a certain amount of time and then continues to 
  * execute the code ater the yield call. */
-    protected IEnumerator waitAndRespawn(int deadShip)
+	protected IEnumerator WaitAndRespawn(int deadShip)
     {
-        yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(5.0f);
 
-        instantiatedShips[deadShip].SetActive(true);
 		_isRespawning[deadShip] = false;
-
+		instantiatedShips[deadShip].GetComponent<Ship>().ResetHealth();
+		instantiatedShips[deadShip].GetComponent<ShipLifeHandler>().IsDead = false;
+		instantiatedShips[deadShip].SetActive(true);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-		if (instantiatedShips != null)
+
+	    int i = 0;
+		while (i < _activePlayers)
 		{
-			int i = 0;
-			while (i < _activePlayers)
+			if (instantiatedShips[i].GetComponent<ShipLifeHandler>().IsDead && !_isRespawning[i])
 			{
-				if (instantiatedShips[i].GetComponent<ShipLifeHandler>().IsDead && !_isRespawning[i])
-				{
-					_isRespawning[i] = true;
-					StartCoroutine(this.waitAndRespawn(i));
-				}
+				instantiatedShips[i].SetActive(false);
+				_isRespawning[i] = true;
+				StartCoroutine(this.WaitAndRespawn(i));
 			}
+
+			i++;
 		}
+
     }
 }

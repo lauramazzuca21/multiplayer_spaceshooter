@@ -54,7 +54,7 @@ public class DefaultBullet : Bullet
         ShipLifeHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipLifeHandler>();
         if (shipCollidedWithHandler != null)
         {
-            shipCollidedWithHandler.takeDamage(Damage);
+			shipCollidedWithHandler.TakeDamage(Damage);
 
             if (shipCollidedWithHandler.IsDead)
             {
@@ -65,7 +65,4 @@ public class DefaultBullet : Bullet
         }
     }
 
-	protected void notifyDeath() {
-		
-	}
 }

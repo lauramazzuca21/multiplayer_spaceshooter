@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
 	void Start()
     {
         _scorePlayer = new int[4];
-
+		_maxKills = 10;
         Reset();
         levelManager = FindObjectOfType<LevelManager>();
     }

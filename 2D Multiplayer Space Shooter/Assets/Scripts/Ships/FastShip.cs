@@ -73,7 +73,7 @@ public class FastShip : Ship
          * transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))*/
     }     
 
-	public void ResetHealth()
+	override public void ResetHealth()
     {
         _lifeHandler.Health = HEALTH;
     }
