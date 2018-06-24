@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShipManager : MonoBehaviour
+public class ShipsManager : MonoBehaviour
 {
     private enum Ships { FAST, RESISTANT, STRONG };
     private enum Colours { BLUE, GREEN, ORANGE, RED };
@@ -19,12 +19,15 @@ public class ShipManager : MonoBehaviour
 
     private bool[] isRespawning;
 
+
     // Use this for initialization
     void Start()
     {
         instantiatedShips = new GameObject[4];
         isRespawning = new bool[4];
         int j = 0;
+
+        //ogni nave deve chiamre il suo? se si come?
 
         foreach (Transform child in transform)
         {
@@ -35,6 +38,7 @@ public class ShipManager : MonoBehaviour
             instantiatedShips[j].transform.parent = child;
 
             isRespawning[j] = false;
+
 
             j++;
         }
