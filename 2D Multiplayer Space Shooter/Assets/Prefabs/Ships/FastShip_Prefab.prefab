@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114285025973579666}
   - component: {fileID: 60448851546792384}
   - component: {fileID: 50866018585842076}
-  - component: {fileID: 114817319269938500}
   - component: {fileID: 114573340770665696}
   m_Layer: 10
   m_Name: FastShip_Prefab
@@ -40,6 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4027209468880882}
+  - component: {fileID: 114659639823860320}
   m_Layer: 10
   m_Name: ShieldSpotDefault
   m_TagString: Untagged
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34013c2dcd02543148ce1145908af4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSpeed: 0
 --- !u!114 &114573340770665696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,20 +292,23 @@ MonoBehaviour:
     type: 2}
   _enhancedBulletPrefab: {fileID: 1546743313966864, guid: 29b016395d61b458599cece8319d87cd,
     type: 2}
-  _bulletSound: {fileID: 0}
-  _enhancedBulletSound: {fileID: 0}
---- !u!114 &114817319269938500
+  _bulletSound: {fileID: 8300000, guid: f91b49975bd814f1aa97397af5a2c9e2, type: 3}
+  _enhancedBulletSound: {fileID: 8300000, guid: 8695b53c7ada34ae48e01e7c65a58daf,
+    type: 3}
+  _powerupHandler: {fileID: 114659639823860320}
+--- !u!114 &114659639823860320
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1437415339161086}
+  m_GameObject: {fileID: 1464733887814486}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2430ddf517d64995a545f9fabee6c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldPrefab: {fileID: 1632688372146772}
+  _shieldPrefab: {fileID: 1979273728496828, guid: dd5735cc8904c40468a4c811217d6aea,
+    type: 2}
 --- !u!212 &212546077101086100
 SpriteRenderer:
   m_ObjectHideFlags: 1

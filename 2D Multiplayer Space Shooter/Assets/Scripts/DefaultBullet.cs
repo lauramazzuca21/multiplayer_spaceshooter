@@ -56,7 +56,7 @@ public class DefaultBullet : Bullet
         {
             shipCollidedWithHandler.takeDamage(Damage);
 
-            if (shipCollidedWithHandler.GetIsDead())
+            if (shipCollidedWithHandler.IsDead)
             {
                 _scoreManager.UpdateScore(gameObject.layer);  
             }

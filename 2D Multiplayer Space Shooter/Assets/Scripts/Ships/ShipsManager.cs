@@ -3,8 +3,7 @@ using System.Collections;
 
 public class ShipsManager : MonoBehaviour
 {
-    private enum Ships { FAST, RESISTANT, STRONG };
-    private enum Colours { BLUE, GREEN, ORANGE, RED };
+    private ServerConnectionManager _server;
 
     [SerializeField]
     private Sprite[] FastShipSprites;
@@ -18,27 +17,28 @@ public class ShipsManager : MonoBehaviour
     private GameObject[] instantiatedShips;
 
     private bool[] isRespawning;
-
-
+   
     // Use this for initialization
     void Start()
     {
-        instantiatedShips = new GameObject[4];
-        isRespawning = new bool[4];
+        instantiatedShips = new GameObject[_server.ActivePlayers];
+        isRespawning = new bool[_server.ActivePlayers];
         int j = 0;
 
         //ogni nave deve chiamre il suo? se si come?
 
         foreach (Transform child in transform)
         {
-            instantiatedShips[j] = Instantiate(shipsPrefabs[(int)Ships.FAST], child);
-            SpriteRenderer spriteRenderer = instantiatedShips[j].GetComponent<SpriteRenderer>();
+            if (j < _server.ActivePlayers)
+            {
+                instantiatedShips[j] = Instantiate(shipsPrefabs[(int)Ships.FAST], child);
+                SpriteRenderer spriteRenderer = instantiatedShips[j].GetComponent<SpriteRenderer>();
 
-            spriteRenderer.sprite = FastShipSprites[(int)Colours.BLUE];
-            instantiatedShips[j].transform.parent = child;
+                spriteRenderer.sprite = FastShipSprites[(int)Colours.BLUE];
+                instantiatedShips[j].transform.parent = child;
 
-            isRespawning[j] = false;
-
+                isRespawning[j] = false;
+            }
 
             j++;
         }
@@ -50,7 +50,7 @@ public class ShipsManager : MonoBehaviour
  * execute the code ater the yield call. */
     protected IEnumerator waitAndRespawn(int deadShip)
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(1.0f);
 
         instantiatedShips[deadShip].SetActive(true);
         isRespawning[deadShip] = false;
@@ -62,10 +62,11 @@ public class ShipsManager : MonoBehaviour
     void Update()
     {
         int i = 0;
-        while (i < 4)
+        while (i < _server.ActivePlayers)
         {
-            if ((instantiatedShips[i].GetComponent<ShipLifeHandler>().GetIsDead()) == true && (isRespawning[i] == false))
+            if (instantiatedShips[i].GetComponent<ShipLifeHandler>().IsDead && !isRespawning[i])
             {
+                isRespawning[i] = true;
                 StartCoroutine(this.waitAndRespawn(i));
             }
         }

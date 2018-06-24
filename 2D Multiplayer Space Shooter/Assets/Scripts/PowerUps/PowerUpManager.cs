@@ -3,7 +3,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PowerupManager : MonoBehaviour
+public class PowerUpManager : MonoBehaviour
 {  
 	//private static readonly int ENHANCED_SHOT = 1;
 	//private static readonly int SPEED_BOOST = 2;
