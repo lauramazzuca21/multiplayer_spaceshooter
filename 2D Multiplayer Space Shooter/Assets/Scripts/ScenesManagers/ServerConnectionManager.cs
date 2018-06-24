@@ -16,16 +16,12 @@ public class ServerConnectionManager : MonoBehaviour {
     void Start () {
 		playersChoices = new Ships[ActivePlayers];
 
-		SetPlayerChoice(0, Ships.FAST);
-		SetPlayerChoice(1, Ships.STRONG);
-		//SetPlayerChoice(2, Ships.RESISTANT);
+		for (int i = 0; i < playersChoices.Length; i++)
+		{
+			playersChoices[i] = Ships.FAST;
+		}
 
 		_shipsManager.InstantiateShips(ActivePlayers, this.playersChoices);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	private void SetPlayerChoice(int playerID, Ships ship) {
