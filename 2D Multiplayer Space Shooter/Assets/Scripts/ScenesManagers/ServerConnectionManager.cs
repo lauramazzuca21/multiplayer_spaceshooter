@@ -1,19 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ServerConnectionManager : MonoBehaviour {
 
-    public int ActivePlayers = 2;
+    public int ActivePlayers = 3;
 
+	private Ships[] playersChoices;
 
+	[SerializeField]
+	private ShipsManager _shipsManager;
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
+		playersChoices = new Ships[ActivePlayers];
+
+		for (int i = 0; i < playersChoices.Length; i++)
+		{
+			playersChoices[i] = Ships.FAST;
+		}
+
+		_shipsManager.InstantiateShips(ActivePlayers, this.playersChoices);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	private void SetPlayerChoice(int playerID, Ships ship) {
+		playersChoices[playerID] = ship;
+        
 	}
 }
