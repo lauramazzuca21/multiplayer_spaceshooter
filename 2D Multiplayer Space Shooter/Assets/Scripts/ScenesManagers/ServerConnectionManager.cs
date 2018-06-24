@@ -9,11 +9,11 @@ public class ServerConnectionManager : MonoBehaviour {
 
 	private Ships[] playersChoices;
 
-	[SerializeField]
 	private ShipsManager _shipsManager;
 
     // Use this for initialization
     void Start () {
+		_shipsManager = FindObjectOfType<ShipsManager>();
 		playersChoices = new Ships[ActivePlayers];
 
 		for (int i = 0; i < playersChoices.Length; i++)

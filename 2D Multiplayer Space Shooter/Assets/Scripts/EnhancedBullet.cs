@@ -51,7 +51,7 @@ public class EnhancedBullet : Bullet
 		ShipLifeHandler shipCollidedWithHandler = collision.gameObject.GetComponent<ShipLifeHandler>();
         if (shipCollidedWithHandler != null)
         {
-            shipCollidedWithHandler.takeDamage(Damage);
+			shipCollidedWithHandler.TakeDamage(Damage);
             Destroy(gameObject);
         }
     }

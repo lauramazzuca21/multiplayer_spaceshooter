@@ -69,5 +69,8 @@ public class ResistantShip : Ship
         //transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }
    
-
+	override public void ResetHealth()
+    {
+        _lifeHandler.Health = HEALTH;
+    }
 }

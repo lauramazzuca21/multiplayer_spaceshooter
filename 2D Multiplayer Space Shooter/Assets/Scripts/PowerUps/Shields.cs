@@ -23,7 +23,7 @@ public class Shields : PowerUp
     override protected void OnTriggerEnter2D(Collider2D collision)
     {
 		Ship shipCollided = collision.GetComponent<Ship>();
-        PowerupHandler handler = shipCollided.GetComponent<PowerupHandler>();
+		PowerupHandler handler = shipCollided.GetComponentInChildren<PowerupHandler>();
 
 
         if (shipCollided != null && handler != null)

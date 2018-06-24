@@ -71,7 +71,7 @@ public class StrongShip : Ship
 		//transform.Translate( new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime))
     }   
     
-	protected void ResetHealth()
+	override public void ResetHealth()
     {
 		_lifeHandler.Health = HEALTH;
     }

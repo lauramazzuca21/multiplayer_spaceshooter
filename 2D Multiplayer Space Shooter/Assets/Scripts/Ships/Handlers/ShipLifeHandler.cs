@@ -18,8 +18,7 @@ public class ShipLifeHandler : MonoBehaviour
 
     //per ora lo mettiamo commentato, poi vediamo se serve
     //private Animator _deathAnimation;
-
-    private ScoreManager _scoremanager; //per notify Death
+ 
 
     public float Health
     {
@@ -30,6 +29,7 @@ public class ShipLifeHandler : MonoBehaviour
     public bool IsDead
     {
         get { return this._isDead; }
+		set { this._isDead = value; }
     }
 
 
@@ -62,21 +62,10 @@ public class ShipLifeHandler : MonoBehaviour
     public void Die()
     {
         _isDead = true;
-        StartCoroutine(waitBeforeDeactivation());
     }
 
 
-    /* IEnumerator grants the possibility to wait inactively 
-* for a certain amount of time and then continues to 
-* execute the code ater the yield call. */
-    protected IEnumerator waitBeforeDeactivation()
-    {
-        yield return new WaitForSeconds(0.5f);
-        gameObject.SetActive(false);
-    }
-
-
-    public void takeDamage(float damageTaken)
+    public void TakeDamage(float damageTaken)
     {
         Health -= damageTaken;
         gameObject.layer = INVULN_LAYER;

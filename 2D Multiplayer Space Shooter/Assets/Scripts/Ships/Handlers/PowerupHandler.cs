@@ -36,9 +36,10 @@ public class PowerupHandler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		_shootHandler = GetComponentInParent<ShootHandler>();
+		_shootHandler = GetComponent<ShootHandler>();
 		ship = GetComponentInParent<Ship>();
 		shipName = ship.name;
+
     }
 
 
@@ -63,6 +64,15 @@ public class PowerupHandler : MonoBehaviour
 		if (!ShieldsStatus) ActivateShield();
 	}
 
+
+	//haven't reset maxspeed in ship yet!!
+	protected IEnumerator ShieldsPowerDown()
+	{
+		yield return new WaitForSeconds(3.0f);
+		DeactivateShield();
+	}
+
+
 	public void SpeedBoostOn(float speedMultiplyer)
 	{
 		if (!SpeedBoostStatus)
@@ -83,17 +93,19 @@ public class PowerupHandler : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         SpeedBoostStatus = false;
 
-		switch (name)
+		Debug.Log("Ship Name:" + shipName);
+
+		switch (shipName)
 		{
-			case "StrongShip_Prefab":
+			case "StrongShip_Prefab(Clone)":
 				ship.MaxSpeed = StrongShip.MAX_SPEED;
 				ship.RotSpeed = StrongShip.ROT_SPEED;
 				break;
-			case "FastShip_Prefab":
+			case "FastShip_Prefab(Clone)":
 				ship.MaxSpeed = FastShip.MAX_SPEED;
                 ship.RotSpeed = FastShip.ROT_SPEED;
                 break;
-			case "ResistantShip_Prefab":
+			case "ResistantShip_Prefab(Clone)":
                 ship.MaxSpeed = ResistantShip.MAX_SPEED;
                 ship.RotSpeed = ResistantShip.ROT_SPEED;
                 break;
@@ -106,12 +118,21 @@ public class PowerupHandler : MonoBehaviour
     
 	private void ActivateShield()
     {
-        _shieldPrefab.SetActive(true);
-    }
+			ShieldsStatus = true;
+		foreach (Transform child in transform)
+		{
+			child.gameObject.SetActive(true);
+			child.gameObject.layer = gameObject.layer;
+		}
+	}
 
     private void DeactivateShield()
     {
-        _shieldPrefab.SetActive(false);
+			ShieldsStatus = false;
+		foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 }
 
