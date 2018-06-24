@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ServerConnectionManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    public int ActivePlayers = 2;
+
+
+
+    // Use this for initialization
+    void Awake () {
 	}
 	
 	// Update is called once per frame

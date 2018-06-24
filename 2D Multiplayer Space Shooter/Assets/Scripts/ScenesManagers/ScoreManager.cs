@@ -16,18 +16,19 @@ public class ScoreManager : MonoBehaviour
 
 	void Start()
     {
-        Reset();
         _scorePlayer = new int[4];
+
+        Reset();
         levelManager = FindObjectOfType<LevelManager>();
     }
 			
-	public void UpdateScore(int playerID) //player 0-3 = 1-4
+	public void UpdateScore(int playerID) //player 0-3
     {
         Debug.Log("Scored points");
-        _scorePlayer[playerID]++;
-        _textPlayerScore[playerID].text = _scorePlayer.ToString();
+        _scorePlayer[playerID - Constants.LAYER_OFFSET]++;
+        _textPlayerScore[playerID-Constants.LAYER_OFFSET].text = _scorePlayer[playerID - Constants.LAYER_OFFSET].ToString();
 
-        if (_scorePlayer[playerID] == _maxKills) {
+        if (_scorePlayer[playerID - Constants.LAYER_OFFSET] == _maxKills) {
             levelManager.LoadScene(Constants.GAMEOVER_SCENE);
         }
     }
@@ -37,7 +38,7 @@ public class ScoreManager : MonoBehaviour
         for(int i = 0; i<_scorePlayer.Length; i++)
         {
             _scorePlayer[i] = 0;
-            _textPlayerScore[i].text = _scorePlayer.ToString();
+            _textPlayerScore[i].text = _scorePlayer[i].ToString();
         }
     }
 }

@@ -17,6 +17,7 @@ public class ShootHandler : MonoBehaviour {
 
 	private GameObject bullet;
 	private Bullet bulletFunctions;
+    [SerializeField]
 	private PowerupHandler _powerupHandler;
 
 	private float _cooldownTimer;
@@ -46,7 +47,7 @@ public class ShootHandler : MonoBehaviour {
 	// Use this for initialization
 	private void Start () {
 		_cooldownTimer = DEFAULT_FIREDELAY;
-		_powerupHandler = GetComponentInParent<PowerupHandler>();
+		//_powerupHandler = GetComponent<PowerupHandler>();
 	}
 
 	// Update is called once per frame

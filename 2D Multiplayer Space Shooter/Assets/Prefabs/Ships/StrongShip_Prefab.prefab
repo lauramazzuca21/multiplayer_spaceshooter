@@ -311,6 +311,7 @@ MonoBehaviour:
   _bulletSound: {fileID: 8300000, guid: f91b49975bd814f1aa97397af5a2c9e2, type: 3}
   _enhancedBulletSound: {fileID: 8300000, guid: 8695b53c7ada34ae48e01e7c65a58daf,
     type: 3}
+  _powerupHandler: {fileID: 114083732389459502}
 --- !u!114 &114192177915083176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7373adaee0147ed93b022676d6f970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSpeed: 0
 --- !u!114 &114500359108294752
 MonoBehaviour:
   m_ObjectHideFlags: 1

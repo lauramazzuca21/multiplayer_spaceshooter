@@ -273,7 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2430ddf517d64995a545f9fabee6c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldPrefab: {fileID: 0}
+  _shieldPrefab: {fileID: 1979273728496828, guid: dd5735cc8904c40468a4c811217d6aea,
+    type: 2}
 --- !u!114 &114088745751832214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,8 +290,10 @@ MonoBehaviour:
     type: 2}
   _enhancedBulletPrefab: {fileID: 1546743313966864, guid: 29b016395d61b458599cece8319d87cd,
     type: 2}
-  _bulletSound: {fileID: 0}
-  _enhancedBulletSound: {fileID: 0}
+  _bulletSound: {fileID: 8300000, guid: f91b49975bd814f1aa97397af5a2c9e2, type: 3}
+  _enhancedBulletSound: {fileID: 8300000, guid: 8695b53c7ada34ae48e01e7c65a58daf,
+    type: 3}
+  _powerupHandler: {fileID: 114068937005902924}
 --- !u!114 &114400104382350026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71c6156ed5cc47d38b32f9637c84bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSpeed: 0
 --- !u!212 &212241622582900410
 SpriteRenderer:
   m_ObjectHideFlags: 1
