@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ShipsManager : MonoBehaviour
 {
-    private ServerConnectionManager _server;
-
     [SerializeField]
     private Sprite[] FastShipSprites;
     [SerializeField]
@@ -14,30 +12,52 @@ public class ShipsManager : MonoBehaviour
     [SerializeField]
     private GameObject[] shipsPrefabs;
 
-    private GameObject[] instantiatedShips;
+	private GameObject[] instantiatedShips = null;
 
-    private bool[] isRespawning;
-   
+    private bool[] _isRespawning;
+
+	private Ships[] _playersChoices;
+	private int _activePlayers;
+
     // Use this for initialization
-    void Start()
+	public void InstantiateShips(int activePlayers, Ships[] choices)
     {
-        instantiatedShips = new GameObject[_server.ActivePlayers];
-        isRespawning = new bool[_server.ActivePlayers];
+        instantiatedShips = new GameObject[activePlayers];
+		_isRespawning = new bool[activePlayers];
+		_playersChoices = choices;
+		_activePlayers = activePlayers;
+        
+
         int j = 0;
 
         //ogni nave deve chiamre il suo? se si come?
 
         foreach (Transform child in transform)
         {
-            if (j < _server.ActivePlayers)
+            if (j < activePlayers)
             {
-                instantiatedShips[j] = Instantiate(shipsPrefabs[(int)Ships.FAST], child);
+				instantiatedShips[j] = Instantiate(shipsPrefabs[(int) _playersChoices[j]], child);
                 SpriteRenderer spriteRenderer = instantiatedShips[j].GetComponent<SpriteRenderer>();
-
-                spriteRenderer.sprite = FastShipSprites[(int)Colours.BLUE];
+                
+				switch ((int)_playersChoices[j])
+				{
+					case 0:
+						spriteRenderer.sprite = FastShipSprites[j];
+						break;
+					case 1:
+						spriteRenderer.sprite = ResistantShipSprites[j];
+                        break;
+					case 2:
+                        spriteRenderer.sprite = StrongShipSprites[j];
+                        break;
+					default:
+						Debug.LogError("Should never reach this point");
+						break;
+				}
+                
                 instantiatedShips[j].transform.parent = child;
 
-                isRespawning[j] = false;
+				_isRespawning[j] = false;
             }
 
             j++;
@@ -53,7 +73,7 @@ public class ShipsManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         instantiatedShips[deadShip].SetActive(true);
-        isRespawning[deadShip] = false;
+		_isRespawning[deadShip] = false;
 
     }
 
@@ -61,14 +81,17 @@ public class ShipsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int i = 0;
-        while (i < _server.ActivePlayers)
-        {
-            if (instantiatedShips[i].GetComponent<ShipLifeHandler>().IsDead && !isRespawning[i])
-            {
-                isRespawning[i] = true;
-                StartCoroutine(this.waitAndRespawn(i));
-            }
-        }
+		if (instantiatedShips != null)
+		{
+			int i = 0;
+			while (i < _activePlayers)
+			{
+				if (instantiatedShips[i].GetComponent<ShipLifeHandler>().IsDead && !_isRespawning[i])
+				{
+					_isRespawning[i] = true;
+					StartCoroutine(this.waitAndRespawn(i));
+				}
+			}
+		}
     }
 }
