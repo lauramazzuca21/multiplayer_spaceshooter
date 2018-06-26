@@ -14,7 +14,6 @@ public class DefaultBullet : Bullet
 		this.Speed = DEFAULT_SPEED;
 		this.Damage = DEFAULT_DAMAGE;
         _scoreManager = FindObjectOfType<ScoreManager>();
-
     }
 
     // Update is called once per frame
@@ -65,7 +64,5 @@ public class DefaultBullet : Bullet
         }
     }
 
-	protected void notifyDeath() {
-		
-	}
+
 }

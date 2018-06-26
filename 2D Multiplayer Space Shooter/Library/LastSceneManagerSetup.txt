@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/PC_Game/02_GamePlay.unity
+- path: Assets/Scenes/PC_Game/03_Scores.unity
   isLoaded: 1
   isActive: 1
